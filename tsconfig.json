@@ -1,0 +1,12 @@
+{
+  "include": [
+    "./src/**/*.ts"
+  ],
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "es2015",
+    "allowJs": true,
+    "noEmitOnError": true,
+    "strict": true,
+  }
+}
