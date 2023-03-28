@@ -1,4 +1,4 @@
-import { dirname, resolve } from 'node:path'
+import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath  } from 'node:url'
 
 import HtmlWebpackPlugin from 'html-webpack-plugin'
@@ -7,9 +7,6 @@ import { CleanWebpackPlugin } from 'clean-webpack-plugin'
 const _dirName = dirname(fileURLToPath(import.meta.url))
 
 export default {
-  // mode production
-  mode: 'development',
-
   // entry: {
   //   app: [
   //       resolve(_dirName, 'src/index.ts')
@@ -30,12 +27,21 @@ export default {
     // },
   },
 
+  // devtool: 'eval-cheap-module-source-map',
+
+  // devServer: {
+  //   open: true,
+  //   hot: true,
+  //   port: 9000, // 默认 8080
+  // },
+
   // module 指定 webpack 打包时要使用的模块
   module: {
     // rules 指定要加载的规则
     rules: [
       {
         // test 指定规则生效的文件，正则
+        // test: /\.tsx?$/, // 匹配 ts 和 tsx 文件
         test: /\.ts$/,
         // use 要使用的 loader，loader 从后往前执行
         use: [
@@ -103,12 +109,12 @@ export default {
       // title 指定生成的 html 的 title
       // title: '这是一个自定义的 title',
       // template 自定义用来生成 html 的模板
-      template: './src/index.html',
+      template: join(_dirName, './src/index.html'),
     }),
   ],
 
-  // 设置哪些文件可以作为模块被引用
+  // 设置哪些文件可以作为模块被引用，引用的时候可省略文件后缀名
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.jsx', '.js'],
   },
 }

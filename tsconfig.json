@@ -64,6 +64,21 @@
     "checkJs": true,
 
     /**
+     * skipLibCheck 跳过声明文件的类型检查
+     */
+    // "skipLibCheck": false,
+
+    /**
+     * esModuleInterop ES 模块互操作，屏蔽 ESModule 和 CommonJS 之间的差异
+     */
+    // "esModuleInterop": false,
+
+    /**
+     * allowSyntheticDefaultImports 允许通过 import x from 'y' 即使模块没有显式指定 default 导出
+     */
+    // "allowSyntheticDefaultImports": true,
+
+    /**
      * removeComments 编译时是否移除注释，默认为 false
      */
     "removeComments": true,
@@ -77,6 +92,27 @@
      * noEmitOnError 当有错误时是否不生成编译后的文件，默认为 false
      */
     "noEmitOnError": true,
+
+    /**
+     * moduleResolution 模块解析（查找）策略
+     */
+    // "moduleResolution": "node",
+
+    /**
+     * resolveJsonModule 允许导入扩展名为 .json 的模块
+     * 需要搭配 moduleResolution 使用
+     */
+    // "resolveJsonModule": true,
+
+    /**
+     * isolatedModules 是否将没有 import/export 的文件视为旧（全局而非模块化）脚本文件
+     */
+    // "isolatedModules": true,
+
+    /**
+     * jsx 指定将 jsx 编译成什么形式
+     */
+    // "jsx": "react-jsx",
 
     /**
      * strict 所有严格检查的总开关，默认为 false
@@ -105,5 +141,15 @@
      * obj?.name // obj 有可能是 null
      */
     // "strictNullChecks": true,
+
+    /**
+     * forceConsistentCasingInFileNames 文件名称强制区分大小写
+     */
+    // "forceConsistentCasingInFileNames": true,
+
+    /**
+     * noFallthroughCasesInSwitch 为 switch 语句启用错误报告
+     */
+    // "noFallthroughCasesInSwitch": false,
   }
 }
