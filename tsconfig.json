@@ -27,7 +27,7 @@
      * module 指定要是要用的模块化规范
      * 可选值：none、commonjs、amd、system、umd、es6/es2015、es2020、esnext
      */
-    "module": "es2015",
+    "module": "esnext",
 
     /**
      * target 指定 ts 代码要被编译成的目标版本
@@ -54,6 +54,11 @@
     // "outFile": "./dist/bundle.js",
 
     /**
+     * sourceMap 是否启用 sourceMap，默认为 false
+     */
+    "sourceMap": true,
+
+    /**
      * allowJs 是否对 js 文件进行编译，默认为 false
      */
     "allowJs": true,
@@ -71,10 +76,11 @@
     /**
      * esModuleInterop ES 模块互操作，屏蔽 ESModule 和 CommonJS 之间的差异
      */
-    // "esModuleInterop": false,
+    // "esModuleInterop": true,
 
     /**
      * allowSyntheticDefaultImports 允许通过 import x from 'y' 即使模块没有显式指定 default 导出
+     * 例如 import * as _ from 'lodash' 可以直接写成 import _ from 'lodash'
      */
     // "allowSyntheticDefaultImports": true,
 
