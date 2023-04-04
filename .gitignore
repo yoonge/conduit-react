@@ -1,5 +1,13 @@
 *.diff
 *.err
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+/cypress/videos/
+/cypress/screenshots/
 
 # IntelliJ
 .idea
@@ -163,6 +171,7 @@ out
 # Nuxt.js build / generate output
 .nuxt
 dist
+dist-ssr
 
 # Gatsby files
 .cache/

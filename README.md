@@ -2,7 +2,7 @@
 
 ## Usage
 
-```bash
+```sh
 git clone https://github.com/yoonge/ts-webpack-tpl.git
 cd ts-webpack-tpl
 pnpm i
