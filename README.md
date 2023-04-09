@@ -1,6 +1,8 @@
-# [Typescript + Less + Webpack Template](https://github.com/yoonge/ts-webpack-tpl)
+# [Typescript + Webpack + Less Template](https://github.com/yoonge/ts-webpack-tpl)
 
-## Usage
+The configuration files list most of the commonly used options with comments.
+
+## Getting Started
 
 ```sh
 git clone https://github.com/yoonge/ts-webpack-tpl.git

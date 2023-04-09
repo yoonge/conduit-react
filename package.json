@@ -1,26 +1,27 @@
 {
-  "name": "ts-webpack-tpl",
-  "version": "1.0.0",
-  "description": "A typescript + less + webpack config template.",
   "author": "Yoonge <7884008@qq.com>",
+  "description": "TypeScript + Webpack + Less config template.",
+  "keywords": [
+    "Config",
+    "Eslint",
+    "Less",
+    "React",
+    "Template",
+    "TypeScript",
+    "Webpack"
+  ],
+  "license": "ISC",
+  "name": "ts-webpack-tpl",
   "private": true,
   "type": "module",
+  "version": "1.0.0",
   "scripts": {
     "build": "webpack --mode production",
+    "format": "prettier --plugin-search-dir . --write ./src",
     "lint": "eslint ./src",
     "start": "webpack serve --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "TypeScript",
-    "Less",
-    "Eslint",
-    "Webpack",
-    "Config",
-    "Template",
-    "React"
-  ],
-  "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.21.3",
     "@babel/preset-env": "^7.20.2",
