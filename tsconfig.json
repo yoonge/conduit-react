@@ -1,161 +1,38 @@
 {
-  /**
-   * @extends 指定要被继承的配置文件
-   */
   // "extends": "./config/base",
-
-  /**
-   * @files 指定需要被编译的文件列表，只有需要编译的文件很少时才可能用到
-   */
   // "files": ['app.ts', 'index.ts'],
-
-  /**
-   * @include 指定哪些 ts 文件需要被编译
-   *   路径： /** 表示任意目录
-   *         /*  表示任意文件
-   */
   "include": [ "./src/**/*" ],
-
-  /**
-  * @exclude 指定不需要被编译的目录和文件
-  *  默认值：["node_modules", "bower_components", "jspm_packages"]
-  */
   // "exclude": [ "./src/temp/**/*" ],
-
   "compilerOptions": {
-    /**
-     * @module 指定要是要用的模块化规范
-     * 可选值：none、commonjs、amd、system、umd、es6/es2015、es2020、esnext
-     */
+    "baseUrl": "./",
     "module": "esnext",
-
-    /**
-     * @target 指定 ts 代码要被编译成的目标版本
-     * 可选值：es3(默认)、es5、es6/es2015、es7/es2016、es2017、es2019、es2020、es2021、es2022、esnext
-     */
-    "target": "es2015",
-
-     /**
-     * @lib 指定项目中要使用的库，一般不需要设置
-     * 可选值很多，如 es5、es6/es2015、...、esnext、dom 等等
-     */
+    "target": "esnext",
     // "lib": [ "esnext", "dom" ],
-
-    /**
-     * @outDir 指定编译后文件存放的目录
-     */
+    "typeRoots": [
+      "src/types",
+      "node_modules/@types"
+    ],
     // "outDir": "./dist",
-
-    /**
-     * @outFile 将代码合并成一个文件
-     * 设置 outFile 后，所有全局作用域中的代码会合并到同一个文件中
-     * 仅 module 为 amd/system 时才支持此选项
-     */
     // "outFile": "./dist/bundle.js",
-
-    /**
-     * @sourceMap 是否启用 sourceMap，默认为 false
-     */
     "sourceMap": true,
-
-    /**
-     * @allowJs 是否对 js 文件进行编译，默认为 false
-     */
     "allowJs": true,
-
-    /**
-     * @checkJs 检查 js 文件代码是否符合规范，默认为 false
-     */
     "checkJs": true,
-
-    /**
-     * @skipLibCheck 跳过声明文件的类型检查
-     */
-    // "skipLibCheck": false,
-
-    /**
-     * @esModuleInterop ES 模块互操作，屏蔽 ESModule 和 CommonJS 之间的差异
-     */
-    // "esModuleInterop": true,
-
-    /**
-     * @allowSyntheticDefaultImports 允许通过 import x from 'y' 即使模块没有显式指定 default 导出
-     * 例如 import * as _ from 'lodash' 可以直接写成 import _ from 'lodash'
-     */
-    // "allowSyntheticDefaultImports": true,
-
-    /**
-     * @removeComments 编译时是否移除注释，默认为 false
-     */
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "removeComments": true,
-
-    /**
-     * @noEmit 是否不生成编译后的文件，默认为 false
-     */
     // "noEmit": false,
-
-    /**
-     * @noEmitOnError 当有错误时是否不生成编译后的文件，默认为 false
-     */
     "noEmitOnError": true,
-
-    /**
-     * @moduleResolution 模块解析（查找）策略
-     */
-    // "moduleResolution": "node",
-
-    /**
-     * @resolveJsonModule 允许导入扩展名为 .json 的模块
-     * 需要搭配 moduleResolution 使用
-     */
-    // "resolveJsonModule": true,
-
-    /**
-     * @isolatedModules 是否将没有 import/export 的文件视为旧（全局而非模块化）脚本文件
-     */
-    // "isolatedModules": true,
-
-    /**
-     * @jsx 指定将 jsx 编译成什么形式
-     */
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
     // "jsx": "react-jsx",
-
-    /**
-     * @strict 所有严格检查的总开关，默认为 false
-     * 开启后可以省略很多其他配置，建议开启
-     */
     "strict": true,
-
-    /**
-     * @alwaysStrict 编译后的文件是否使用严格模式，默认为 false
-     * 当代码中使用了 es6 语法，会自动开启此项，一般不需要设置
-     */
     // "alwaysStrict": false,
-
-    /**
-     * @noImplicitAny 是否不允许隐式的 any 类型，默认为 false
-     */
     // "noImplicitAny": true,
-
-    /**
-     * @noImplicitThis 是否不允许不确定类型的 this，默认为 false
-     */
     // "noImplicitThis": true,
-
-    /**
-     * @strictNullChecks 是否严格检查 null，默认为 false
-     *  obj?.name // obj 有可能是 null
-     */
     // "strictNullChecks": true,
-
-    /**
-     * @forceConsistentCasingInFileNames 文件名称强制区分大小写
-     */
     // "forceConsistentCasingInFileNames": true,
-
-    /**
-     * @noFallthroughCasesInSwitch 为 switch 语句启用错误报告
-     */
     // "noFallthroughCasesInSwitch": false,
   }
 }

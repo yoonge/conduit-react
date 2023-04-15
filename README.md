@@ -1,12 +1,12 @@
-# [Typescript + Webpack + Less Template](https://github.com/yoonge/ts-webpack-tpl)
+# Message Board
 
-The configuration files list most of the commonly used options with comments.
+Back-End of [Message Board](https://github.com/yoonge/message-board.git) built with Less + TypeScript + Webpack.
 
 ## Getting Started
 
-```sh
-git clone https://github.com/yoonge/ts-webpack-tpl.git
-cd ts-webpack-tpl
-pnpm i
-pnpm start
+``` sh
+$ git clone https://github.com/yoonge/message-board.git
+$ cd message-board
+$ pnpm i
+$ pnpm run dev
 ```

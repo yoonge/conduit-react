@@ -1,0 +1,49 @@
+{{extend 'layout.html'}}
+
+{{block 'content'}}
+<h2>User List</h2>
+<h3 class="text-end">
+  <a class="btn btn-sm btn-dark" href="/user/insert" role="button" title="Add">
+    <svg class="bi" width="20" height="20" fill="currentColor">
+      <use xlink:href="/images/bootstrap-icons.svg#plus-lg"/>
+    </svg>
+  </a>
+</h3>
+<table class="table table-bordered table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Username</th>
+      <th>Gender</th>
+      <th>Age</th>
+      <th>Email</th>
+      <th>Manage</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{each data}}
+    <tr>
+      <td>{{ $index + 1 }}</td>
+      <td>{{ $value.nickname }}</td>
+      <td>{{ $value.username }}</td>
+      <td>{{ $value.gender }}</td>
+      <td>{{ $value.age }}</td>
+      <td>{{ $value.email }}</td>
+      <td>
+        <a href="/user/update?_id={{@ $value._id }}" class="link-primary mx-1" title="Edit">
+          <svg class="bi" width="20" height="20" fill="currentColor">
+            <use xlink:href="/images/bootstrap-icons.svg#pencil-square"/>
+          </svg>
+        </a>
+        <a href="/user/remove?_id={{@ $value._id }}" class="link-danger mx-1" title="Delete">
+          <svg class="bi" width="20" height="20" fill="currentColor">
+            <use xlink:href="/images/bootstrap-icons.svg#trash"/>
+          </svg>
+        </a>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+{{/block}}

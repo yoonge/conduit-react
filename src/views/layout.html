@@ -1,0 +1,42 @@
+{{block 'head'}}
+<link rel="stylesheet" href="/bootstrap5.2.3/bootstrap.min.css">
+<link rel="stylesheet" href="/stylesheets/style.css">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+{{/block}}
+
+{{block 'title'}}
+<title>{{ title }}</title>
+{{/block}}
+
+{{block 'header'}}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"><strong>
+      <svg class="bi me-2" width="32" height="32" fill="currentColor" style="vertical-align: -5">
+        <use xlink:href="/images/bootstrap-icons.svg#apple"/>
+      </svg>Mongoose Test
+    </strong></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a {{if (pathname == '/')}}class="nav-link active"{{else}}class="nav-link"{{/if}} href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a {{if (pathname.indexOf('/user') == 0)}}class="nav-link active"{{else}}class="nav-link"{{/if}} href="/user">User</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{{/block}}
+
+<div class="container py-4">
+{{block 'content'}}{{/block}}
+</div>
+
+{{block 'footer'}}
+<script src="/bootstrap5.2.3/bootstrap.bundle.min.js"></script>
+{{/block}}
