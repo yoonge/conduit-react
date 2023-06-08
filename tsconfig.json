@@ -1,38 +1,24 @@
 {
-  // "extends": "./config/base",
-  // "files": ['app.ts', 'index.ts'],
-  "include": [ "./src/**/*" ],
-  // "exclude": [ "./src/temp/**/*" ],
   "compilerOptions": {
-    "baseUrl": "./",
-    "module": "esnext",
-    "target": "esnext",
-    // "lib": [ "esnext", "dom" ],
-    "typeRoots": [
-      "src/types",
-      "node_modules/@types"
-    ],
-    // "outDir": "./dist",
-    // "outFile": "./dist/bundle.js",
-    "sourceMap": true,
-    "allowJs": true,
-    "checkJs": true,
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "module": "ESNext",
     "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "removeComments": true,
-    // "noEmit": false,
-    "noEmitOnError": true,
-    "moduleResolution": "node",
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    // "jsx": "react-jsx",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
     "strict": true,
-    // "alwaysStrict": false,
-    // "noImplicitAny": true,
-    // "noImplicitThis": true,
-    // "strictNullChecks": true,
-    // "forceConsistentCasingInFileNames": true,
-    // "noFallthroughCasesInSwitch": false,
-  }
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

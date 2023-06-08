@@ -1,15 +1,16 @@
-// Useful references:
-// https://typescript-eslint.io/
-
 export default {
+  env: { browser: true, es2020: true },
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:react-hooks/recommended',
     'plugin:prettier/recommended'
   ],
   parser: '@typescript-eslint/parser',
-  plugins: [
-    '@typescript-eslint'
-  ],
-  root: true
+  parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
+  plugins: ['react-refresh'],
+  root: true,
+  rules: {
+    'react-refresh/only-export-components': 'warn',
+  },
 }
