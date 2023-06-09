@@ -1,11 +1,24 @@
 {
+  "author": "Yoonge <7884008@qq.com>",
+  "description": "Front-End of Conduit built with ESLint + Less + Prettier + React + TypeScript + Vite.",
+  "keywords": [
+    "Conduit",
+    "ESLint",
+    "Less",
+    "Prettier",
+    "React",
+    "RealWorld",
+    "TypeScript",
+    "Vite"
+  ],
   "name": "conduit-react",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "dev": "vite",
     "build": "tsc && vite build",
+    "dev": "vite",
+    "format": "npx prettier --write src",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

@@ -1,6 +1,6 @@
 # Conduit React
 
-Front-End of [Conduit](https://github.com/yoonge/message-board.git) built with Less + React + TypeScript + Vite.
+Front-End of [Conduit](https://github.com/yoonge/message-board.git) built with ESLint + Less + Prettier + React + TypeScript + Vite.
 
 ## Getting Started
 
