@@ -1,12 +1,16 @@
 {
   "author": "Yoonge <7884008@qq.com>",
-  "description": "Front-End of Conduit built with ESLint + Less + Prettier + React + TypeScript + Vite.",
+  "description": "Front-End of Conduit built with Antd + ESLint + Less + Prettier + ProComponents + React + ReactRouter + TypeScript + Vite.",
   "keywords": [
+    "Ant-Design",
+    "Antd",
     "Conduit",
     "ESLint",
     "Less",
     "Prettier",
+    "Pro-components",
     "React",
+    "React-router",
     "RealWorld",
     "TypeScript",
     "Vite"

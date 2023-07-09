@@ -1,6 +1,6 @@
 # Conduit React
 
-Front-End of [Conduit](https://github.com/yoonge/conduit-react.git) built with ESLint + Less + Prettier + React + TypeScript + Vite.
+Front-End of [Conduit](https://github.com/yoonge/conduit-react.git) built with Antd + ESLint + Less + Prettier + ProComponents + React + ReactRouter + TypeScript + Vite.
 
 ## Getting Started
 
