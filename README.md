@@ -52,7 +52,7 @@ Conduit React is [MIT-licensed](./LICENSE) open-source software maintained by [Y
 <!-- ## 🔗 Links -->
 
 
-<!-- ----
+----
 
 
 ## 🏗️ Scaffold
@@ -60,10 +60,10 @@ Conduit React is [MIT-licensed](./LICENSE) open-source software maintained by [Y
 Where did I start:
 
 ```sh
-$ pip install --user cookiecutter
+$ mkdir conduit-react
 
-$ # pip install --upgrade cookiecutter
+$ cd conduit-react
 
-$ cookiecutter cookiecutter-pypackage/
-``` -->
+$ pnpm create vite . --template react-ts
+```
 
