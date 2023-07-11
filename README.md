@@ -21,19 +21,7 @@ $ pnpm dev
 ```
 
 
-<!-- ## 📁 Index
-
-0. [Beautify](https://github.com/yoonge/python-exercise/blob/main/src/beautify.py) default input and print method
-1. [Drawing Spiral](https://github.com/yoonge/python-exercise/blob/main/src/01_drawing_spiral.py)
-2. [Drawing Olymic Rings](https://github.com/yoonge/python-exercise/blob/main/src/02_drawing_olymic_rings.py)
-3. [String Concatenation](https://github.com/yoonge/python-exercise/blob/main/src/03_string_concatenation.py)
-4. [Multiplication Table](https://github.com/yoonge/python-exercise/blob/main/src/04_multiplication_table.py)
-5. [List Comprehensions](https://github.com/yoonge/python-exercise/blob/main/src/05_list_comprehensions.py)
-6. [Loop Else](https://github.com/yoonge/python-exercise/blob/main/src/06_loop_else.py)
-7. [Drawing Chessboard](https://github.com/yoonge/python-exercise/blob/main/src/07_chessboard.py)
-8. [Exception Handling](https://github.com/yoonge/python-exercise/blob/main/src/08_exception_handling.py)
-9. [Custom Exception](https://github.com/yoonge/python-exercise/blob/main/src/09_custom_exception.py)
-10. [Tank Battle](https://github.com/yoonge/py-tank-battle) -->
+<!-- ## 📁 Index -->
 
 
 <!-- ## ⚡ Features -->
