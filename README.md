@@ -27,9 +27,7 @@ $ pnpm dev
 <!-- ## ⚡ Features -->
 
 
-<!-- ## 📌 TODO
-
-* Directly execute the entry file to select which demo to demonstrate. -->
+<!-- ## 📌 TODO -->
 
 
 ## 📄 License
