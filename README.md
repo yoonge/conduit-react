@@ -43,8 +43,6 @@ Conduit React is [MIT-licensed](./LICENSE) open-source software maintained by [Y
 
 ## 🏗️ Scaffold
 
-Where did I start:
-
 ```sh
 $ mkdir conduit-react
 
