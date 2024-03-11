@@ -1,32 +1,95 @@
-header {
-  width: 100%;
-  background-color: #fff;
+.header {
 
   .container {
-    display: flex;
-    justify-content: space-between;
-    height: 40px;
-    padding: 8px 16px;
+    max-width: 1200px;
+    padding: 0 36px;
 
-    h1 {
-      color: #5cb85c;
-      font-family: mononoki, Monaco, Consolas, 'Lucida Grande', Helvetica, Arial, sans-serif;
-      font-size: 1.5rem;
-      font-weight: bold;
-      text-align: left;
-      line-height: 40px;
-      margin-block-start: 0;
-      margin-block-end: 0;
+    .navbar-expand-lg {
+      padding: 12px 0;
     }
 
-    ul {
-      line-height: 40px;
-      list-style: none;
+    .navbar-brand {
+      color: #5cb85c;
+      font-family: mononoki, Monaco, Consolas, 'Lucida Grande', Helvetica, Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
 
-      li {
-        display: inline-block;
-        letter-spacing: -0.01rem;
-        margin-left: 1.5rem;
+      img {
+        margin-right: 6px;
+        vertical-align: -7px;
+      }
+    }
+
+    .nav-link {
+      font-size: 18px;
+    }
+
+    .login {
+
+      form {
+        margin-block-end: 0;
+      }
+
+      .btn {
+        margin-left: 12px;
+      }
+
+      .dropdown-toggle {
+        font-size: 20px;
+        text-decoration: none;
+
+        &::after {
+          vertical-align: 3px;
+        }
+      }
+
+      .dropdown-menu {
+        border-radius: 0;
+
+        .btn-link {
+          color: orangered;
+          height: 18px;
+          line-height: 18px;
+          text-decoration: none;
+          margin: 0;
+          padding: 0;
+        }
+      }
+
+      .avatar {
+        border-radius: 2.5px;
+        margin-top: -4px;
+        margin-right: 6px;
+      }
+    }
+
+    .navbar-light .login {
+      .dropdown-toggle {
+        color: #666;
+        padding-left: 0;
+        padding-right: 0;
+
+        &.show,
+        &:focus,
+        &:hover,
+        &:active {
+          color: #000;
+        }
+      }
+    }
+
+    .navbar-dark .login {
+      .dropdown-toggle {
+        color: #fff;
+        padding-left: 0;
+        padding-right: 0;
+
+        &.show,
+        &:focus,
+        &:hover,
+        &:active {
+          color: #ccc;
+        }
       }
     }
   }
