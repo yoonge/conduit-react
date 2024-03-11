@@ -1,6 +1,6 @@
 # ⌨️  Conduit React
 
-[![Conduit React](https://img.shields.io/badge/React-Conduit-orange)](https://github.com/yoonge/conduit-react) ![version](https://img.shields.io/badge/version-0.1.0-yellow) [![license](https://img.shields.io/badge/license-MIT-blue)](./LICENSE) ![react](https://img.shields.io/badge/react-%3E%3D18.2.0-green.svg) ![pnpm](https://img.shields.io/badge/pnpm-8.6.5-purple)
+[![Conduit React](https://img.shields.io/badge/React-Conduit-orange)](https://github.com/yoonge/conduit-react) ![version](https://img.shields.io/badge/version-0.1.0-yellow) [![license](https://img.shields.io/badge/license-MIT-blue)](./LICENSE) ![react](https://img.shields.io/badge/react-%3E%3D18.2.0-green.svg) ![pnpm](https://img.shields.io/badge/pnpm-8.15.4-purple)
 
 
 ## 💡 Introduction
@@ -30,9 +30,9 @@ $ pnpm dev
 <!-- ## 📌 TODO -->
 
 
-## 📄 License
+<!-- ## 📄 License
 
-Conduit React is [MIT-licensed](./LICENSE) open-source software maintained by [Yoonge](https://github.com/yoonge).
+Conduit React is [MIT-licensed](./LICENSE). -->
 
 
 <!-- ## 🔗 Links -->
