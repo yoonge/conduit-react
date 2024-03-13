@@ -51,15 +51,6 @@ const Header: React.FC = () => {
                 <Dropdown.Item href="/topic/initiate">New Topic</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-            {/* <NavDropdown title="Yoonge" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/settings">Settings</NavDropdown.Item>
-              <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
-              <NavDropdown.Item href="/my-topics">MyTopics</NavDropdown.Item>
-              <NavDropdown.Item href="/my-favorites">MyFavorites</NavDropdown.Item>
-              <NavDropdown.Item href="/topic/initiate">New Topic</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
-            </NavDropdown> */}
           </Nav>
         </Navbar.Collapse>
       </Container>
