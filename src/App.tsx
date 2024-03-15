@@ -1,3 +1,4 @@
+import { HoxRoot } from 'hox'
 import Header from './components/Header'
 import Banner from './components/Banner'
 import Tabs from './components/Tabs'
@@ -7,14 +8,14 @@ import './App.less'
 const App = () => {
 
   return (
-    <>
+    <HoxRoot>
       <Header />
       <Banner />
-      <main className="main">
+      <main className="main mx-auto">
         <Tabs />
         <ListView />
       </main>
-    </>
+    </HoxRoot>
   )
 }
 

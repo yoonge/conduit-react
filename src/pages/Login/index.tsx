@@ -1,46 +1,29 @@
 import React from 'react'
-import { Container } from 'react-bootstrap'
-import Logo from '../../assets/nodejs.ico'
+import { Button, FloatingLabel, Form } from 'react-bootstrap'
+import Logo from '../../assets/images/nodejs.ico'
 
 import '../../assets/stylesheets/sign.less'
 
-
 const Login: React.FC = () => {
   return (
-    <main className="form-signin">
-      <Container>
-        <form action="/login" method="post">
-          <img className="mb-4" src={Logo} alt="Logo" title="Node.js" height="57" />
+    <main className="form-signin mx-auto p-3">
+      <Form className="text-center">
+        <img className="mb-4" src={Logo} alt="Logo" title="Node.js" height="57" />
+        <FloatingLabel controlId="email" label="Email address">
+          <Form.Control type="email" placeholder="name@example.com" />
+        </FloatingLabel>
+        <FloatingLabel controlId="password" label="Password">
+          <Form.Control type="password" placeholder="Password" />
+        </FloatingLabel>
 
-          <div className="form-floating">
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              name="email"
-              placeholder="name@example.com"
-              autoFocus
-            />
-            <label htmlFor="email">Email address</label>
-          </div>
-          <div className="form-floating">
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              name="password"
-              placeholder="Password"
-            />
-            <label htmlFor="password">Password</label>
-          </div>
-
-          {/* <div className="checkbox mb-3">
-            <label> <input type="checkbox" value="remember-me" /> Remember me </label>
-          </div> */}
-          <button className="w-100 btn btn-lg btn-dark" type="submit">Sign In</button>
-          <p className="mt-4 mb-3">Need an accout? <a href="/register">Sign Up</a>.</p>
-        </form>
-      </Container>
+        {/* <div className="checkbox mb-3">
+          <label> <input type="checkbox" value="remember-me" /> Remember me </label>
+        </div> */}
+        <Button className="w-100" variant="dark" size="lg">Sign In</Button>
+        <p className="text-start mt-4 mb-3">
+          Need an accout? <a href="/register">Sign Up</a>.
+        </p>
+      </Form>
     </main>
   )
 }
