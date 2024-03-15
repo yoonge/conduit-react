@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Dropdown, Nav, Navbar } from 'react-bootstrap'
-import ViteLogo from '../../assets/vite.svg'
+import NodeLogo from '../../assets/nodejs.ico'
 import ReactLogo from '../../assets/react.svg'
 import './index.less'
 
@@ -13,10 +13,10 @@ const Header: React.FC = () => {
           <img
             alt="Logo"
             title="Vite.js"
-            src={ViteLogo}
-            className="d-inline-block align-top"
-            width="32"
-            height="32"
+            src={NodeLogo}
+            className="d-inline-block"
+            width="30"
+            height="30"
           />
           Conduit
         </Navbar.Brand>
