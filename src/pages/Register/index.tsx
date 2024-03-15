@@ -1,54 +1,30 @@
 import React from 'react'
-import { Container } from 'react-bootstrap'
-import Logo from '../../assets/nodejs.ico'
+import { Button, FloatingLabel, Form } from 'react-bootstrap'
+import Logo from '../../assets/images/nodejs.ico'
 
 import '../../assets/stylesheets/sign.less'
 
 const Register: React.FC = () => {
   return (
-    <main className="form-signin">
-      <Container>
-        <form action="/register" method="post">
-          <img className="mb-4" src={Logo} alt="Logo" title="Node.js" height="57" />
+    <main className="form-signin mx-auto p-3">
+      <Form className="text-center">
+        <img className="mb-4" src={Logo} alt="Logo" title="Node.js" height="57" />
+        <FloatingLabel controlId="email" label="Email address">
+          <Form.Control type="email" placeholder="name@example.com" autoComplete="off" />
+        </FloatingLabel>
+        <FloatingLabel controlId="username" label="Username">
+          <Form.Control type="text" placeholder="Username" autoComplete="off" />
+        </FloatingLabel>
 
-          <div className="form-floating">
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              name="email"
-              placeholder="name@example.com"
-              autoComplete="off"
-              autoFocus
-            />
-            <label htmlFor="email">Email address</label>
-          </div>
-          <div className="form-floating">
-            <input
-              type="text"
-              className="form-control"
-              id="username"
-              name="username"
-              placeholder="Username"
-              autoComplete="off"
-            />
-            <label htmlFor="username">Username</label>
-          </div>
-          <div className="form-floating">
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              name="password"
-              placeholder="Password"
-            />
-            <label htmlFor="password">Password</label>
-          </div>
+        <FloatingLabel controlId="password" label="Password">
+          <Form.Control type="password" placeholder="Password" />
+        </FloatingLabel>
 
-          <button className="w-100 btn btn-lg btn-dark" type="submit">Sign Up</button>
-          <p className="mt-4 mb-3">Already have an account? <a href="/login">Sign In</a>.</p>
-        </form>
-      </Container>
+        <Button className="w-100" variant="dark" size="lg">Sign Up</Button>
+        <p className="text-start mt-4 mb-3">
+          Already have an account? <a href="/login">Sign In</a>.
+        </p>
+      </Form>
     </main>
   )
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import Vite from '../../assets/vite.svg'
+import Vite from '../../assets/images/vite.svg'
 import './index.less'
 
 const ListItem: React.FC = () => {
