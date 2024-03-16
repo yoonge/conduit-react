@@ -1,3 +1,5 @@
+import { User } from './user'
+
 declare type Topic = {
   _id: string
   comment?: number
@@ -7,6 +9,7 @@ declare type Topic = {
   title: string
   updateTime: Date
   updateTimeStr?: string
+  user: User
 }
 
 export { Topic }

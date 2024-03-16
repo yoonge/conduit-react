@@ -5,16 +5,19 @@ import Tabs from './components/Tabs'
 import ListView from './components/ListView'
 import './App.less'
 
-const App = () => {
+import { TopicStoreProvider } from './stores/topic'
 
+const App = () => {
   return (
     <HoxRoot>
       <Header />
       <Banner />
-      <main className="main mx-auto">
-        <Tabs />
-        <ListView />
-      </main>
+      <TopicStoreProvider>
+        <main className="main mx-auto">
+          <Tabs />
+          <ListView />
+        </main>
+      </TopicStoreProvider>
     </HoxRoot>
   )
 }
