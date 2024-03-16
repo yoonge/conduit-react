@@ -60,8 +60,8 @@ const Header: React.FC = () => {
               </Dropdown>
             ) : (
               <>
-                <Button href="/login" variant="outline-dark" size="sm">Sign in</Button>
-                <Button href="/register" variant="dark" size="sm">Sign up</Button>
+                <Button href="/login" variant="outline-dark">Sign in</Button>
+                <Button href="/register" variant="dark">Sign up</Button>
               </>
             )}
           </Nav>

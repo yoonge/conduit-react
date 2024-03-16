@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button } from 'react-bootstrap'
 
 import { useAcountStore } from '../../stores/auth'
 
@@ -9,7 +10,7 @@ const Tabs: React.FC = () => {
     <>
       {user.username ? (
         <div className="text-end">
-          <a href="/topic/initiate" className="btn btn-dark">New Topic</a>
+          <Button variant="dark" href="/topic/initiate">New Topic</Button>
         </div>
       ) : null}
 
