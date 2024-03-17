@@ -1,5 +1,4 @@
 import React from 'react'
-import './index.less'
 
 import { BASE_URL } from '../../constants/settiings'
 import { User } from '../../types/user'
