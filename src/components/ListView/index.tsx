@@ -4,11 +4,15 @@ import './index.less'
 
 import { useTopicStore } from '../../stores/topic'
 
-const ListView: React.FC = () => {
+interface ListViewProps {
+  activeKey: string
+}
+
+const ListView: React.FC<ListViewProps> = ({ activeKey }) => {
   const { topicList, fetchTopicList } = useTopicStore()
   useEffect(() => {
     fetchTopicList()
-  }, [])
+  }, [activeKey])
 
   return (
     <section>
