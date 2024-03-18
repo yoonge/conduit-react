@@ -4,7 +4,7 @@ import './index.less'
 
 const Banner: React.FC = () => {
   return (
-    <section className="banner w-100">
+    <section className="banner d-flex justify-content-center">
       <Container className="text-center">
         <h1>Conduit</h1>
         <p>A place to share your knowledge.</p>
