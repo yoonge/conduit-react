@@ -13,11 +13,11 @@ const TabsComponent: React.FC<TabsComponentProps> = ({ activeKey, handleTabSelec
 
   return (
     <>
-      {user.username ? (
+      {user.username && (
         <div className="text-end">
           <Button variant="dark" href="/topic/initiate">New Topic</Button>
         </div>
-      ) : null}
+      )}
 
       <Tabs
         className="mb-2"
@@ -25,12 +25,13 @@ const TabsComponent: React.FC<TabsComponentProps> = ({ activeKey, handleTabSelec
         onSelect={key => handleTabSelect(key as string)}
       >
         <Tab eventKey="all" title="All Topics" />
-        {user.username ? (
-          <>
-            <Tab eventKey="my-topics" title="My Topics" />
+        {user.username && (
+          <Tab eventKey="my-topics" title="My Topics" />
+        )}
+        {user.username && (
             <Tab eventKey="my-favorites" title="My Favorites" />
-          </>
-        ) : (
+        )}
+        {!user.username && (
           <Tab eventKey="sign-in" title="Sign in to see your own topics & favorites" />
         )}
       </Tabs>

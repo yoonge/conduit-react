@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { HoxRoot } from 'hox'
 import Header from './components/Header'
 import Banner from './components/Banner'
 import TabsComponent from './components/TabsComponent'
@@ -22,7 +21,7 @@ const App = () => {
   }
 
   return (
-    <HoxRoot>
+    <>
       <Header />
       <Banner />
       <TopicStoreProvider activeKey={activeKey}>
@@ -31,7 +30,7 @@ const App = () => {
           <ListView activeKey={activeKey} />
         </main>
       </TopicStoreProvider>
-    </HoxRoot>
+    </>
   )
 }
 

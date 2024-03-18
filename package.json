@@ -1,14 +1,19 @@
 {
   "author": "Yoonge <7884008@qq.com>",
-  "description": "Front-End of Conduit built with ESLint + Less + Prettier + React + ReactRouter + TypeScript + Vite.",
+  "description": "Realworld: The mother of all demo apps — Exemplary front-end Medium.com clone (called Conduit) built with Axios + Bootstrap + ESLint + Hox + Less + Prettier + React + React-Bootstrap + React-Router-DOM + TypeScript + Vite.",
   "keywords": [
+    "Axios",
+    "Bootstrap",
     "Conduit",
+    "Demo",
     "ESLint",
+    "Hox",
     "Less",
     "Prettier",
-    "Pro-components",
     "React",
-    "React-router",
+    "React-Bootstrap",
+    "React-Router",
+    "React-Router-DOM",
     "RealWorld",
     "TypeScript",
     "Vite"

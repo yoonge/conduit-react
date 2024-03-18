@@ -19,7 +19,7 @@ const ListItem: React.FC<ListItemProps> = ({ topic }) => {
         <img src={`${BASE_URL}${topic.user.avatar}`} alt={topic.user.username} width="32" height="32" />
       </a>
       <div className="d-flex w-100 justify-content-between">
-        <a href={`/topicDetail/${topic._id}`} className="topicSummary">
+        <a href={`/topic-detail/${topic._id}`} className="topicSummary">
           <h5 className="mb-1">{topic.title}</h5>
           <p className="mb-4 text-muted">{topic.content}</p>
           <small className="text-muted">

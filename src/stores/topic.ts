@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { createStore } from 'hox'
-import axios from 'axios'
-import { API_PREFIX } from '../constants/settiings'
+import axios from '../utils/axios'
 
 import { Topic } from '../types/topic'
 
@@ -15,7 +14,7 @@ export const [useTopicStore, TopicStoreProvider] = createStore((props: TopicStor
 
   const fetchTopicList = async () => {
     try {
-      let api = `${API_PREFIX}/`;
+      let api = '/';
       switch (activeKey) {
         case 'my-topics':
           api += 'my-topics'
@@ -24,7 +23,7 @@ export const [useTopicStore, TopicStoreProvider] = createStore((props: TopicStor
           api += 'my-favorites'
           break
         default:
-          // Nothing to do.
+          break
       }
       const { data = {} } = await axios.get(api)
       // console.log('fetchTopicList data: ', data)
