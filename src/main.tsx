@@ -5,6 +5,7 @@ import { HoxRoot } from 'hox'
 import App from './App.tsx'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import TopicDetail from './pages/TopicDetail'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.less'
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
   { path: '/', element: <App /> },
   { path: '/login', element: <Login /> },
   { path: '/register', element: <Register /> },
+  { path: '/topic-detail/:_id', element: <TopicDetail /> }
 ])
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

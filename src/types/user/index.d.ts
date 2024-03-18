@@ -10,7 +10,6 @@ declare type User = {
   password: string
   phone?: number
   position?: string
-  token: string
   username: string
 }
 

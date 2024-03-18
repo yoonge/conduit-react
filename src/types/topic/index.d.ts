@@ -7,8 +7,8 @@ declare type Topic = {
   favorite?: number
   status?: number
   title: string
+  createTime: Date
   updateTime: Date
-  updateTimeStr?: string
   user: User
 }
 
