@@ -21,16 +21,17 @@ const TabsComponent: React.FC<TabsComponentProps> = ({ activeKey, handleTabSelec
 
       <Tabs
         className="mb-2"
+        activeKey={activeKey}
         defaultActiveKey={activeKey}
         onSelect={key => handleTabSelect(key as string)}
       >
         <Tab eventKey="all" title="All Topics" />
-        {user.username && (
+        {user.username ? (
           <Tab eventKey="my-topics" title="My Topics" />
-        )}
-        {user.username && (
-            <Tab eventKey="my-favorites" title="My Favorites" />
-        )}
+        ) : null}
+        {user.username ? (
+          <Tab eventKey="my-favorites" title="My Favorites" />
+        ) : null}
         {!user.username && (
           <Tab eventKey="sign-in" title="Sign in to see your own topics & favorites" />
         )}

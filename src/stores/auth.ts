@@ -11,7 +11,6 @@ export const [useAcountStore, getAcountStore] = createGlobalStore(() => {
   }
 
   const login = (user: User, token: string) => {
-    console.log('login user: ', user)
     setUser(user)
     localStorage.setItem('user', JSON.stringify(user))
     localStorage.setItem('token', token)

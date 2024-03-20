@@ -34,11 +34,11 @@ const Header: React.FC = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Homepage</Nav.Link>
+            <Nav.Link href="/" className="me-1">Homepage</Nav.Link>
             {user.username ? (
               <>
-                <Nav.Link href="/my-topics">MyTopics</Nav.Link>
-                <Nav.Link href="/my-favorites">MyFavorites</Nav.Link>
+                {/* <Nav.Link href="/my-topics">MyTopics</Nav.Link>
+                <Nav.Link href="/my-favorites">MyFavorites</Nav.Link> */}
                 <Nav.Link href="/settings">Settings</Nav.Link>
               </>
             ) : null}
@@ -60,8 +60,8 @@ const Header: React.FC = () => {
                 <Dropdown.Menu>
                   <Dropdown.Item href="/settings">Settings</Dropdown.Item>
                   <Dropdown.Item href="/profile">Profile</Dropdown.Item>
-                  <Dropdown.Item href="/my-topics">MyTopics</Dropdown.Item>
-                  <Dropdown.Item href="/my-favorites">MyFavorites</Dropdown.Item>
+                  {/* <Dropdown.Item href="/my-topics">MyTopics</Dropdown.Item>
+                  <Dropdown.Item href="/my-favorites">MyFavorites</Dropdown.Item> */}
                   <Dropdown.Item href="/topic/initiate">New Topic</Dropdown.Item>
                   <Dropdown.Divider />
                   <Dropdown.Item as="button" className="logout" onClick={handleLogout}>Logout</Dropdown.Item>
