@@ -1,11 +1,11 @@
 # ⌨️ Conduit React
 
-[![Conduit React](https://img.shields.io/badge/Conduit-React-orange)](https://github.com/yoonge/conduit-react) ![version](https://img.shields.io/badge/version-0.1.1-yellow) [![license](https://img.shields.io/badge/license-MIT-blue)](./LICENSE) ![React](https://img.shields.io/badge/React-%5E18.2.0-green.svg) ![Hox](https://img.shields.io/badge/Hox-%5E2.1.1-fuchsia.svg) ![Bootstrap](https://img.shields.io/badge/Bootstrap-%5E5.3.3-deepskyblue.svg) ![React-Bootstrap](https://img.shields.io/badge/ReactBootstrap-%5E2.10.1-cyan.svg) ![pnpm](https://img.shields.io/badge/pnpm-8.15.4-purple)
+[![Conduit React](https://img.shields.io/badge/Conduit-React-orange)](https://github.com/yoonge/conduit-react) ![version](https://img.shields.io/badge/version-0.1.1-yellow) [![license](https://img.shields.io/badge/license-MIT-blue)](./LICENSE) ![React](https://img.shields.io/badge/React-%5E18.2.0-green.svg) ![Hox](https://img.shields.io/badge/Hox-%5E2.1.1-fuchsia.svg) ![Bootstrap](https://img.shields.io/badge/Bootstrap-%5E5.3.3-deepskyblue.svg) ![React-Bootstrap](https://img.shields.io/badge/ReactBootstrap-%5E2.10.1-cyan.svg) ![pnpm](https://img.shields.io/badge/pnpm-8.15.5-purple)
 
 
 ## 💡 Introduction
 
-Realworld: "The mother of all demo apps" — Exemplary front-end Medium.com clone (called [Conduit](https://github.com/yoonge/conduit-react.git)) built with Axios + Bootstrap + ESLint + Hox + Less + Prettier + React + React-Bootstrap + React-Router-DOM + TypeScript + Vite.
+Realworld: "The mother of all demo apps" — Exemplary front-end Medium.com clone (called [Conduit](https://github.com/yoonge/conduit-react.git)) built with Axios + Bootstrap + ESLint + Hox + Less + Prettier + React + React-Bootstrap + React-Router-DOM + TypeScript + Vditor + Vite.
 
 
 ## 🔰 Getting Started

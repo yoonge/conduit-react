@@ -1,3 +1,5 @@
+@import 'vditor/src/assets/less/index';
+
 .topicHeaderWrapper {
   color: #fff;
   background-color: #212529;
@@ -5,7 +7,7 @@
 
 .topicHeader {
   flex: 1;
-  max-width: 1200;
+  max-width: 1200px;
   word-break: break-all;
   padding: 36px;
 }
@@ -35,17 +37,19 @@
 
 .topicContent {
   font-size: 18px;
+  max-width: 1200px;
   line-height: 1.8rem;
   word-break: break-all;
-  padding-top: 12px;
+  padding: 48px 36px 36px;
 }
 
 .topicComment {
   font-size: 16px;
+  max-width: 1200px;
   line-height: 1.8rem;
   border-top: 1px solid rgba(0, 0, 0, .176);
   margin-top: 36px;
-  padding: 36px 48px 0;
+  padding: 36px 48px 96px;
 }
 
 @media (max-width: 767.98px) {
@@ -98,4 +102,8 @@
 .commentOwner small {
   opacity: .75;
   margin-left: 10px;
+}
+.vditor-reset {
+  color: rgba(33, 37, 41, .7);
+  font-family: mononoki, Monaco, Consolas, 'Lucida Grande', Helvetica, Arial, sans-serif;
 }

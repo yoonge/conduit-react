@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Header from '../../components/Header'
 // import Banner from '../../components/Banner'
+import Vditor from 'vditor'
 import { BASE_URL } from '../../constants/settiings'
 
-import { AxiosResponse } from 'axios'
 import axios from '../../utils/axios'
+import { AxiosResponse } from 'axios'
 import { useAcountStore } from '../../stores/auth'
 
 import { Topic } from '../../types/topic'
@@ -19,6 +20,8 @@ const TopicDetail: React.FC = () => {
   const [comments, setComments] = useState([] as Array<Comment>)
   const [comment, setComment] = useState('')
   const { _id } = useParams()
+  const topicContentRef = useRef(null)
+
   useEffect(() => {
     axios
       .get(`/topic-detail/${_id}`)
@@ -26,6 +29,14 @@ const TopicDetail: React.FC = () => {
         const { data: { comments: allComments = [], topic = {} } = {} } = res
         setComments(allComments)
         setTopic(topic)
+
+        Vditor.preview(topicContentRef?.current!, topic?.content, {
+          lang: 'en_US',
+          mode: 'light',
+          theme: {
+            current: 'light'
+          }
+        })
       })
       .catch(err => {
         console.error('err', err)
@@ -64,23 +75,25 @@ const TopicDetail: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="d-flex align-items-center">
-              <a className="btn btn-outline-light" href="/topicUpdate/{{ topic?._id?.toString() }}">Edit</a>
-            </div>
+            {(user?._id === topic?.user?._id) && (
+              <div className="d-flex align-items-center">
+                <a className="btn btn-outline-light" href="/topicUpdate/{{ topic?._id?.toString() }}">Edit</a>
+              </div>
+            )}
           </div>
         </div>
       </div>
 
-      <div id="topicContent" className="topicContent">
-        <textarea name="content" id="content" defaultValue={topic?.content} />
+      <div id="topicContent" className="topicContent mx-auto" ref={topicContentRef}>
+        <textarea name="content" id="content" style={{ display: "none" }} defaultValue={topic?.content} />
       </div>
 
       {user?.username || comments.length ? (
-        <div className="topicComment">
+        <div className="topicComment mx-auto">
           {user?.username ? (
             <form className="card" action="/topic/comment" method="post">
-              <input type="hidden" name="topic" value={topic?._id} />
-              <input type="hidden" name="user" value={user?._id} />
+              {/* <input type="hidden" name="topic" value={topic?._id} />
+              <input type="hidden" name="user" value={user?._id} /> */}
               <div className="card-body">
                 <div className="card-text">
                   <textarea

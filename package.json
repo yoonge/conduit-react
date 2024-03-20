@@ -1,6 +1,6 @@
 {
   "author": "Yoonge <7884008@qq.com>",
-  "description": "Realworld: The mother of all demo apps — Exemplary front-end Medium.com clone (called Conduit) built with Axios + Bootstrap + ESLint + Hox + Less + Prettier + React + React-Bootstrap + React-Router-DOM + TypeScript + Vite.",
+  "description": "Realworld: The mother of all demo apps — Exemplary front-end Medium.com clone (called Conduit) built with Axios + Bootstrap + ESLint + Hox + Less + Prettier + React + React-Bootstrap + React-Router-DOM + TypeScript + Vditor + Vite.",
   "keywords": [
     "Axios",
     "Bootstrap",
@@ -16,6 +16,7 @@
     "React-Router-DOM",
     "RealWorld",
     "TypeScript",
+    "Vditor",
     "Vite"
   ],
   "name": "conduit-react",
@@ -36,7 +37,8 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.1",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.13.0"
+    "react-router-dom": "^6.13.0",
+    "vditor": "^3.10.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.64",
