@@ -39,11 +39,14 @@
 
   .avatar {
     border-radius: 4px;
+
+    &.flex-shrink-0 {
+      flex-shrink: 0 !important;
+    }
   }
 
   .favorite {
     min-width: 96px;
-    text-align: right;
 
     .btn svg {
       margin-top: -1px;
@@ -55,14 +58,6 @@
     min-width: 96px;
     white-space: nowrap;
   }
-}
-
-.noTopic {
-  padding: 24px 0;
-}
-
-.flex-shrink-0 {
-  flex-shrink: 0 !important;
 }
 
 .topicPagination {

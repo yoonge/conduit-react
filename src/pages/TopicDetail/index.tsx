@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import Header from '../../components/Header'
-// import Banner from '../../components/Banner'
+import { Button, Form } from 'react-bootstrap'
 import Vditor from 'vditor'
+import Header from '../../components/Header'
 import { BASE_URL } from '../../constants/settiings'
+import './index.less'
 
 import axios from '../../utils/axios'
 import { AxiosResponse } from 'axios'
@@ -11,8 +12,6 @@ import { useAcountStore } from '../../stores/auth'
 
 import { Topic } from '../../types/topic'
 import { Comment } from '../../types/comment'
-
-import './index.less'
 
 const TopicDetail: React.FC = () => {
   const { user } = useAcountStore()
@@ -46,7 +45,6 @@ const TopicDetail: React.FC = () => {
   return (
     <>
       <Header />
-      {/* <Banner /> */}
       <div className="d-flex justify-content-center topicHeaderWrapper">
         <div className="topicHeader">
           <h2>{topic?.title}</h2>
@@ -67,17 +65,17 @@ const TopicDetail: React.FC = () => {
                   <div className="card-body">
                     <h5 className="card-title">{topic?.user?.nickname}</h5>
                     <p className="card-text">
-                      <small className="text-muted">
-                        {topic?.updateTime?.toLocaleString()}
-                      </small>
+                      <small className="text-muted">{topic?.updateTime?.toLocaleString()}</small>
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-            {(user?._id === topic?.user?._id) && (
+            {user?._id === topic?.user?._id && (
               <div className="d-flex align-items-center">
-                <a className="btn btn-outline-light" href="/topicUpdate/{{ topic?._id?.toString() }}">Edit</a>
+                <Button variant="outline-light" href={`/topicDelete/${topic?._id?.toString()}`}>
+                  Edit
+                </Button>
               </div>
             )}
           </div>
@@ -85,21 +83,19 @@ const TopicDetail: React.FC = () => {
       </div>
 
       <div id="topicContent" className="topicContent mx-auto" ref={topicContentRef}>
-        <textarea name="content" id="content" style={{ display: "none" }} defaultValue={topic?.content} />
+        <Form.Control as="textarea" className="d-none" defaultValue={topic?.content} />
       </div>
 
       {user?.username || comments.length ? (
         <div className="topicComment mx-auto">
           {user?.username ? (
-            <form className="card" action="/topic/comment" method="post">
+            <div className="card">
               {/* <input type="hidden" name="topic" value={topic?._id} />
               <input type="hidden" name="user" value={user?._id} /> */}
               <div className="card-body">
                 <div className="card-text">
-                  <textarea
-                    className="form-control"
-                    name="content"
-                    id="content"
+                  <Form.Control
+                    as="textarea"
                     rows={6}
                     value={comment}
                     onChange={e => setComment(e.target.value)}
@@ -118,11 +114,11 @@ const TopicDetail: React.FC = () => {
                   />
                   {user?.nickname}
                 </div>
-                <button className="btn btn-sm btn-dark" type="submit">
+                <Button variant="dark" size="sm">
                   Post Comment
-                </button>
+                </Button>
               </div>
-            </form>
+            </div>
           ) : null}
 
           {comments.length

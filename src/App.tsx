@@ -17,8 +17,14 @@ const App = () => {
   const handleTabSelect = (key: string) => {
     if (key === 'sign-in') {
       navigete('/login')
+    } else if (key === 'all') {
+      setActiveKey(key)
+      searchParams.delete('page')
+      searchParams.delete('tab')
+      setSearchParams({...searchParams})
     } else {
       setActiveKey(key)
+      searchParams.delete('page')
       setSearchParams({
         ...searchParams,
         tab: key

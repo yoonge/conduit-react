@@ -18,7 +18,7 @@ instance.interceptors.response.use(res => {
   if (err.response.status === 401) {
     localStorage.removeItem('user')
     localStorage.removeItem('token')
-    window.location.reload()
+    window.location.href = '/'
   }
   return Promise.reject(err)
 })
