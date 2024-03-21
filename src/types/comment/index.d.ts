@@ -5,7 +5,7 @@ declare type Comment = {
   content: string
   status?: number
   topic: Types.ObjectId
-  createTime?: Date
+  createTime: Date
   user: User
 }
 

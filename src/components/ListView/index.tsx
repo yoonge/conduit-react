@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { AxiosError } from 'axios'
 import ListItem from '../ListItem'
 import './index.less'
 
@@ -12,7 +13,9 @@ interface ListViewProps {
 const ListView: React.FC<ListViewProps> = ({ activeKey, handleTabSelect }) => {
   const { topicList, fetchTopicList } = useTopicStore()
   useEffect(() => {
-    fetchTopicList()
+    fetchTopicList().catch((err: AxiosError) => {
+      console.log('err', err)
+    })
   }, [activeKey])
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -26,7 +29,7 @@ const ListView: React.FC<ListViewProps> = ({ activeKey, handleTabSelect }) => {
         {topicList.length ? (
           topicList.map(item => <ListItem key={item?._id} topic={item} />)
         ) : (
-          <div className="noTopic text-muted">
+          <div className="py-4 text-muted">
             {activeKey === 'my-favorites' ? (
               <>
                 Nothing yet... You can find some topics that interest you <a href="" onClick={handleClick}>HERE</a>.
