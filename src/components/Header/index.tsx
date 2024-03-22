@@ -17,7 +17,7 @@ const Header: React.FC = () => {
   }
 
   return (
-    <Navbar expand="lg" className="header bg-body-tertiary">
+    <Navbar expand="lg" className="header">
        {/* bg="dark" data-bs-theme="dark" */}
       <Container>
         <Navbar.Brand href="/">
@@ -55,7 +55,7 @@ const Header: React.FC = () => {
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item href="/settings">Settings</Dropdown.Item>
-                  <Dropdown.Item href="/profile">Profile</Dropdown.Item>
+                  <Dropdown.Item href={`/profile/${user.username}`}>Profile</Dropdown.Item>
                   <Dropdown.Divider />
                   <Dropdown.Item href="/topic/initiate">New Topic</Dropdown.Item>
                   <Dropdown.Divider />

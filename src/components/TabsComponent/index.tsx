@@ -6,11 +6,12 @@ import { Tab as TabType } from '../../types/topic'
 
 interface TabsComponentProps {
   activeKey: string
+  defaultActiveKey: string
   handleTabSelect: (key: string) => void
   tabs: Array<TabType>
 }
 
-const TabsComponent: React.FC<TabsComponentProps> = ({ activeKey, handleTabSelect, tabs }) => {
+const TabsComponent: React.FC<TabsComponentProps> = ({ activeKey, defaultActiveKey, handleTabSelect, tabs }) => {
   const { user } = useAcountStore()
 
   return (
@@ -24,7 +25,7 @@ const TabsComponent: React.FC<TabsComponentProps> = ({ activeKey, handleTabSelec
       <Tabs
         className="mb-2"
         activeKey={activeKey}
-        defaultActiveKey={activeKey}
+        defaultActiveKey={defaultActiveKey}
         onSelect={key => handleTabSelect(key as string)}
       >
         {tabs.map(tab => {
@@ -37,16 +38,6 @@ const TabsComponent: React.FC<TabsComponentProps> = ({ activeKey, handleTabSelec
           }
           return tabItem
         })}
-        {/* <Tab eventKey="all" title="All Topics" />
-        {user.username ? (
-          <Tab eventKey="my-topics" title="My Topics" />
-        ) : null}
-        {user.username ? (
-          <Tab eventKey="my-favorites" title="My Favorites" />
-        ) : null}
-        {!user.username && (
-          <Tab eventKey="sign-in" title="Sign in to see your own topics & favorites" />
-        )} */}
       </Tabs>
     </>
   )

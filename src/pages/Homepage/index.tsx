@@ -1,6 +1,15 @@
+import { useState } from 'react'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import ListPage from '../../components/ListPage'
 
+import { TopicStoreProvider } from '../../stores/topic'
+
 const Homepage = () => {
+  const navigate = useNavigate()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const tab = searchParams.get('tab') || 'all'
+  const [activeKey, setActiveKey] = useState(tab)
+
   const tabs = [
     { key: 'all', label: 'All Topics', visibility: 0 },
     { key: 'my-topics', label: 'My Topics', visibility: 1 },
@@ -8,13 +17,35 @@ const Homepage = () => {
     { key: 'sign-in', label: 'Sign in to see your own topics & favorites', visibility: -1 },
   ]
 
+  const handleTabSelect = (key: string) => {
+    if (key === 'sign-in') {
+      navigate('/login')
+    } else if (key === 'all') {
+      setActiveKey(key)
+      searchParams.delete('page')
+      searchParams.delete('tab')
+      setSearchParams({...searchParams})
+    } else {
+      setActiveKey(key)
+      searchParams.delete('page')
+      setSearchParams({
+        ...searchParams,
+        tab: key
+      })
+    }
+  }
+
   return (
-    <ListPage
-      defaultActiveKey="all"
-      headline={<h1>Conduit</h1>}
-      secondary={<p>A place to share your knowledge.</p>}
-      tabs={tabs}
-    />
+    <TopicStoreProvider activeKey={activeKey}>
+      <ListPage
+        activeKey={activeKey}
+        defaultActiveKey="all"
+        generateHeadline={(_) => <h1>Conduit</h1>}
+        generateSecondary={(_) => <p>A place to share your knowledge.</p>}
+        handleTabSelect={handleTabSelect}
+        tabs={tabs}
+      />
+    </TopicStoreProvider>
   )
 }
 
