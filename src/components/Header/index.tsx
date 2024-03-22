@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { redirect, useLocation } from 'react-router-dom'
 import { Button, Container, Dropdown, Nav, Navbar } from 'react-bootstrap'
 import { BASE_URL } from '../../constants/settiings'
 import NodeLogo from '../../assets/images/nodejs.ico'
@@ -9,11 +9,11 @@ import { useAcountStore } from '../../stores/auth'
 
 const Header: React.FC = () => {
   const { user, logout } = useAcountStore()
-  const navigate = useNavigate()
+  const { pathname = '/' } = useLocation()
 
   const handleLogout = () => {
     logout()
-    navigate('/login')
+    redirect('/login')
   }
 
   return (
@@ -34,9 +34,9 @@ const Header: React.FC = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/" className="me-1">Homepage</Nav.Link>
+            <Nav.Link href="/" className={pathname === "/" ? "me-1 active" : "me-1"}>Homepage</Nav.Link>
             {user.username ? (
-              <Nav.Link href="/settings">Settings</Nav.Link>
+              <Nav.Link href="/settings" className={pathname === "/settings" ? "active" : ""}>Settings</Nav.Link>
             ) : null}
           </Nav>
           <Nav className="d-flex login">

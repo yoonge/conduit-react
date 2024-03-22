@@ -2,13 +2,15 @@ import React from 'react'
 import { Button, Tab, Tabs } from 'react-bootstrap'
 
 import { useAcountStore } from '../../stores/auth'
+import { Tab as TabType } from '../../types/topic'
 
 interface TabsComponentProps {
   activeKey: string
   handleTabSelect: (key: string) => void
+  tabs: Array<TabType>
 }
 
-const TabsComponent: React.FC<TabsComponentProps> = ({ activeKey, handleTabSelect }) => {
+const TabsComponent: React.FC<TabsComponentProps> = ({ activeKey, handleTabSelect, tabs }) => {
   const { user } = useAcountStore()
 
   return (
@@ -25,7 +27,17 @@ const TabsComponent: React.FC<TabsComponentProps> = ({ activeKey, handleTabSelec
         defaultActiveKey={activeKey}
         onSelect={key => handleTabSelect(key as string)}
       >
-        <Tab eventKey="all" title="All Topics" />
+        {tabs.map(tab => {
+          const tabItem = <Tab eventKey={tab.key} title={tab.label} key={tab.key} />
+          if (tab.visibility === -1) {
+            return !user.username ? tabItem : null
+          }
+          if (tab.visibility === 1) {
+            return user.username ? tabItem : null
+          }
+          return tabItem
+        })}
+        {/* <Tab eventKey="all" title="All Topics" />
         {user.username ? (
           <Tab eventKey="my-topics" title="My Topics" />
         ) : null}
@@ -34,7 +46,7 @@ const TabsComponent: React.FC<TabsComponentProps> = ({ activeKey, handleTabSelec
         ) : null}
         {!user.username && (
           <Tab eventKey="sign-in" title="Sign in to see your own topics & favorites" />
-        )}
+        )} */}
       </Tabs>
     </>
   )
