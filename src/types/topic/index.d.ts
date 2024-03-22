@@ -1,11 +1,5 @@
 import { User } from './user'
 
-declare type Tab = {
-  key: string
-  label: string
-  visibility: number
-}
-
 declare type Topic = {
   _id: string
   comment?: number

@@ -3,8 +3,8 @@ import { Container } from 'react-bootstrap'
 import './index.less'
 
 interface BannerProps {
-  headline: string | JSX.Element
-  secondary: string | JSX.Element
+  headline: JSX.Element
+  secondary: JSX.Element
 }
 
 const Banner: React.FC<BannerProps> = ({ headline, secondary }) => {

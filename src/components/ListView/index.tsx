@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { AxiosError } from 'axios'
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import ListItem from '../ListItem'
 import './index.less'
 
@@ -8,20 +8,19 @@ import { useTopicStore } from '../../stores/topic'
 interface ListViewProps {
   activeKey: string
   handleTabSelect: (key: string) => void
-  theUserId?: string | undefined
 }
 
 const ListView: React.FC<ListViewProps> = ({ activeKey, handleTabSelect }) => {
-  const { topicList, fetchTopicList } = useTopicStore()
-  useEffect(() => {
-    fetchTopicList().catch((err: AxiosError) => {
-      console.log('err', err)
-    })
-  }, [activeKey])
+  const navigate = useNavigate()
+  const { topicList } = useTopicStore()
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault()
-    handleTabSelect('all')
+    if (activeKey === 'favorites') {
+      navigate('/')
+    } else {
+      handleTabSelect('all')
+    }
   }
 
   return (
@@ -31,11 +30,12 @@ const ListView: React.FC<ListViewProps> = ({ activeKey, handleTabSelect }) => {
           topicList.map(item => <ListItem key={item?._id} topic={item} />)
         ) : (
           <div className="py-4 text-muted">
-            {activeKey === 'my-favorites' ? (
+            {['favorites', 'my-favorites'].includes(activeKey) && (
               <>
                 Nothing yet... You can find some topics that interest you <a href="" onClick={handleClick}>HERE</a>.
               </>
-            ) : (
+            )}
+            {['all', 'my-topics', 'topics'].includes(activeKey) && (
               <>
                 Nothing yet... You can initiate a new topic <a href="/topic/initiate">HERE</a>.
               </>
