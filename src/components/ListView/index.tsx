@@ -8,6 +8,7 @@ import { useTopicStore } from '../../stores/topic'
 interface ListViewProps {
   activeKey: string
   handleTabSelect: (key: string) => void
+  theUserId?: string | undefined
 }
 
 const ListView: React.FC<ListViewProps> = ({ activeKey, handleTabSelect }) => {

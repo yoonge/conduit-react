@@ -17,7 +17,7 @@ const ListItem: React.FC<ListItemProps> = ({ topic }) => {
   return (
     <div className="d-flex list-group-item list-group-item-action gap-3">
       <a
-        href={`/profile/${topic.user.username}`}
+        href={user?.username ? `/profile/${topic.user.username}` : undefined}
         title={topic.user.nickname}
         className="avatar flex-shrink-0"
       >

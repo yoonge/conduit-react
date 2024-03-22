@@ -20,7 +20,7 @@ instance.interceptors.response.use(res => {
     localStorage.removeItem('token')
     window.location.href = '/'
   }
-  return Promise.reject(err)
+  return Promise.reject(err.response.data)
 })
 
 export default instance

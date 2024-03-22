@@ -36,17 +36,16 @@ const Login: React.FC = () => {
     if (!e.currentTarget.checkValidity()) {
       return
     }
-    const { data = {} } = await axios.post('/login', {
-      email,
-      password
-    })
-    const { code, msg, token, user } = data
-    if (code === 500) {
-      setAlertMsg(msg)
-      return
-    } else if (code === 200) {
+    try {
+      const { data = {} } = await axios.post('/login', {
+        email,
+        password
+      })
+      const { token, user } = data
       login(user, token)
       navigete(redirect)
+    } catch (err: any) {
+      setAlertMsg(err.msg)
     }
   }
 
