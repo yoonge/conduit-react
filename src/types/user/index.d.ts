@@ -6,6 +6,7 @@ declare type User = {
   email: string
   favorite?: [Types.ObjectId]
   gender?: number
+  job?: string
   nickname?: string
   password: string
   phone?: number

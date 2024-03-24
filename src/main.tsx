@@ -7,6 +7,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import TopicDetail from './pages/TopicDetail'
 import Profile from './pages/Profile'
+import Settings from './pages/Settings'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.less'
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
   { path: '/register', element: <Register /> },
   { path: '/topic-detail/:_id', element: <TopicDetail /> },
   { path: '/profile/:username', element: <Profile /> },
+  { path: '/settings', element: <Settings /> },
 ])
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
