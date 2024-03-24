@@ -37,7 +37,7 @@ const Profile = () => {
       <img
         alt={user?.username}
         src={`${BASE_URL}${user?.avatar}`}
-        title={user?.nickname}
+        title={user?.nickname || user?.username}
         width={100}
       />
     </h2>
@@ -45,7 +45,7 @@ const Profile = () => {
 
   const generateSecondary = (user: User) => {
     return <>
-      <h4 className="mt-3">{user?.nickname}</h4>
+      <h4 className="mt-3">{user?.nickname || user?.username}</h4>
       <p className="text-secondary">{user?.bio}</p>
     </>
   }

@@ -51,7 +51,7 @@ const Header: React.FC = () => {
                     width="24"
                     height="24"
                   />
-                  {user.nickname}
+                  {user.nickname || user.username}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item href="/settings">Settings</Dropdown.Item>
