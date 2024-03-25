@@ -16,11 +16,23 @@ export const [useAcountStore, getAcountStore] = createGlobalStore(() => {
     localStorage.setItem('token', token)
   }
 
+  const update = (user: User) => {
+    setUser(user)
+    localStorage.setItem('user', JSON.stringify(user))
+  }
+
   const logout = () => {
     setUser({} as User)
     localStorage.removeItem('user')
     localStorage.removeItem('token')
   }
 
-  return { user, login, logout }
+  return { login, logout, update, user }
+})
+
+export const [useLoaddingStore, getLoaddingStore] = createGlobalStore(() => {
+  const [loading, setLoading] = useState(false)
+  const [loadingCount, setLoadingCount] = useState(0)
+
+  return { loading, loadingCount, setLoading, setLoadingCount }
 })

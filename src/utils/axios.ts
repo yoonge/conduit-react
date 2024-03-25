@@ -4,6 +4,7 @@ import { API_PREFIX } from '../constants/settiings'
 const instance = axios.create({
   baseURL: API_PREFIX,
   timeout: 5000,
+  // withCredentials: true,
 })
 
 instance.interceptors.request.use(req => {

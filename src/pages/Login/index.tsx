@@ -37,6 +37,7 @@ const Login: React.FC = () => {
     if (!e.currentTarget.checkValidity()) {
       return
     }
+
     try {
       const { data = {} } = await axios.post('/login', {
         email,

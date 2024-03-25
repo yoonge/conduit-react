@@ -1,16 +1,20 @@
 import { useState } from 'react'
-import { Button, Form } from 'react-bootstrap'
+import { Button, Form, Spinner } from 'react-bootstrap'
 import AVATAR from '../../constants/avatar'
 import { BASE_URL } from '../../constants/settiings'
 import Header from '../../components/Header'
 import Banner from '../../components/Banner'
+import ToastComp from '../../components/ToastComp'
 import './index.less'
 
-import { useAcountStore } from '../../stores/auth'
+import axios from '../../utils/axios'
+import { loadingDelay } from '../../utils/loading'
+import { useAcountStore, useLoaddingStore } from '../../stores/auth'
 import { User } from '../../types/user'
 
 const Settings: React.FC = () => {
-  const { user = {} as User } = useAcountStore()
+  const { update, user = {} as User } = useAcountStore()
+  const { loading = false, setLoading } = useLoaddingStore()
   const [avatar, setAvatar] = useState(user.avatar)
   const [email] = useState(user.email)
   const [username, setUsername] = useState(user.username)
@@ -21,6 +25,10 @@ const Settings: React.FC = () => {
   const [job, setJob] = useState(user.job)
   const [bio, setBio] = useState(user.bio)
   const [password, setPassword] = useState('')
+  const [passwordConfirm, setPasswordConfirm] = useState('')
+
+  const [toastMsg, setToastMsg] = useState('')
+  const [show, setShow] = useState(false)
 
   const GENDERS = [
     { value: 1, label: 'Male' },
@@ -57,6 +65,9 @@ const Settings: React.FC = () => {
       case 'password':
         setPassword(value)
         break
+      case 'passwordConfirm':
+        setPasswordConfirm(value)
+        break
       default:
         break
     }
@@ -67,6 +78,34 @@ const Settings: React.FC = () => {
     e.stopPropagation()
     if (!e.currentTarget.checkValidity()) {
       return
+    }
+
+    try {
+      const formData = {
+        _id: user._id,
+        avatar,
+        email,
+        username,
+        nickname,
+        gender,
+        birthday,
+        phone,
+        job,
+        bio,
+        password
+      }
+      setLoading(true)
+      const { data = {} } = await axios.post('/settings/update', formData)
+      const { msg, user: updatedUser = {} as User } = data
+      update(updatedUser)
+      loadingDelay(400).then(() => {
+        setLoading(false)
+        setToastMsg(msg)
+        setShow(true)
+      })
+    } catch (err: any) {
+      setLoading(false)
+      console.error('Settings update error: ', err)
     }
   }
 
@@ -91,11 +130,13 @@ const Settings: React.FC = () => {
           </>
         }
       />
-      <div className="settings">
-        {/* <h2>title</h2> */}
-        {/* <h4><img className="avatar" src="{{ user.avatar }}" alt="Avatar" title="{{ user.username }}" width="64" /></h4> */}
-        <Form className="mt-5" style={{ paddingBlockEnd: '96px' }} noValidate onSubmit={handleSubmit}>
-          {/* <input type="hidden" name="_id" value={user._id.toString()} /> */}
+      <section className="settings">
+        <Form
+          className="mt-5"
+          style={{ paddingBlockEnd: '96px' }}
+          noValidate
+          onSubmit={handleSubmit}
+        >
           <div className="mb-3">
             <Form.Label htmlFor="avatar">Avatar</Form.Label>
             <Form.Select
@@ -125,15 +166,13 @@ const Settings: React.FC = () => {
             <Form.Label htmlFor="username">Username</Form.Label>
             <Form.Control
               id="username"
+              isInvalid={!username.trim()}
               onChange={e => handleInputChange('username', e.target.value)}
               required
               type="text"
               value={username}
-              isInvalid={!username.trim()}
             />
-            <Form.Control.Feedback type="invalid">
-              Username is required.
-            </Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">Username is required.</Form.Control.Feedback>
           </div>
           <div className="mb-3">
             <Form.Label htmlFor="nickname">Nickname</Form.Label>
@@ -148,20 +187,16 @@ const Settings: React.FC = () => {
             <Form.Label htmlFor="gender">Gender</Form.Label>
             <div className="form-control form-radio-control" id="gender">
               {GENDERS.map(item => (
-                <Form.Check
-                  checked={gender === item.value}
-                  className="me-4"
-                  inline
-                  key={item.value}
-                  onChange={e => handleInputChange('gender', e.target.value)}
-                  type="radio"
-                  value={item.value}
-                >
-                  <Form.Check.Label>
-                    <Form.Check.Input name="gender" type="radio" />
-                    {item.label}
-                  </Form.Check.Label>
-                </Form.Check>
+                <Form.Check.Label className="me-5" key={item.label}>
+                  <Form.Check
+                    checked={gender === item.value}
+                    inline
+                    onChange={e => handleInputChange('gender', e.target.value)}
+                    type="radio"
+                    value={item.value}
+                  />
+                  {item.label}
+                </Form.Check.Label>
               ))}
             </div>
           </div>
@@ -218,10 +253,40 @@ const Settings: React.FC = () => {
             />
           </div>
           <div className="mb-3">
-            <Button variant="dark" type="submit">Update</Button>
+            <Form.Label htmlFor="password">Password Confirm</Form.Label>
+            <Form.Control
+              id="passwordConfirm"
+              isInvalid={password !== passwordConfirm}
+              onChange={e => handleInputChange('passwordConfirm', e.target.value)}
+              placeholder="Confirm your new password"
+              type="password"
+              value={passwordConfirm}
+            />
+            <Form.Control.Feedback type="invalid">Passwords are inconsistent</Form.Control.Feedback>
+          </div>
+          <div className="mb-3">
+            <Button variant="dark" type="submit" disabled={loading}>
+              <Spinner
+                animation="border"
+                aria-hidden="true"
+                as="span"
+                className="me-2"
+                hidden={!loading}
+                role="status"
+                size="sm"
+              />
+              Update
+            </Button>
           </div>
         </Form>
-      </div>
+      </section>
+      <ToastComp
+        content={toastMsg}
+        position="bottom-end"
+        show={show}
+        setShow={setShow}
+        title="Settings"
+      />
     </>
   )
 }
