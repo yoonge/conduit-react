@@ -12,7 +12,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment }) => {
   return (
     <Card>
       <Card.Body>
-        <Card.Text>
+        <Card.Text as="div">
           <pre>{comment?.content}</pre>
         </Card.Text>
       </Card.Body>
