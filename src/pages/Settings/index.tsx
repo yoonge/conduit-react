@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Button, Form, Spinner } from 'react-bootstrap'
+import flatpickr from 'flatpickr'
 import AVATAR from '../../constants/avatar'
 import { BASE_URL } from '../../constants/settiings'
 import Header from '../../components/Header'
@@ -41,7 +42,7 @@ const Settings: React.FC = () => {
       case 'avatar':
         setAvatar(value)
         break
-      case 'username':
+        case 'username':
         setUsername(value)
         break
       case 'nickname':
@@ -108,6 +109,15 @@ const Settings: React.FC = () => {
       console.error('Settings update error: ', err)
     }
   }
+
+  const flatpickrRef = useRef(null)
+  useEffect(() => {
+    flatpickr(flatpickrRef.current!, {
+      onChange: (_, dateStr: string) => {
+        handleInputChange('birthday', dateStr)
+      }
+    })
+  }, [])
 
   return (
     <>
@@ -184,8 +194,8 @@ const Settings: React.FC = () => {
             />
           </div>
           <div className="mb-3">
-            <Form.Label htmlFor="gender">Gender</Form.Label>
-            <div className="form-control form-radio-control" id="gender">
+            <Form.Label>Gender</Form.Label>
+            <div className="form-control form-radio-control">
               {GENDERS.map(item => (
                 <Form.Check.Label className="me-5" key={item.label}>
                   <Form.Check
@@ -206,6 +216,7 @@ const Settings: React.FC = () => {
               id="birthday"
               onChange={e => handleInputChange('birthday', e.target.value)}
               placeholder="2016-03-14"
+              ref={flatpickrRef}
               type="text"
               value={birthday}
             />
@@ -245,6 +256,7 @@ const Settings: React.FC = () => {
           <div className="mb-3">
             <Form.Label htmlFor="password">Password</Form.Label>
             <Form.Control
+              autoComplete="off"
               id="password"
               onChange={e => handleInputChange('password', e.target.value)}
               placeholder="A new password, if you wanna change"
@@ -255,6 +267,7 @@ const Settings: React.FC = () => {
           <div className="mb-3">
             <Form.Label htmlFor="password">Password Confirm</Form.Label>
             <Form.Control
+              autoComplete="off"
               id="passwordConfirm"
               isInvalid={password !== passwordConfirm}
               onChange={e => handleInputChange('passwordConfirm', e.target.value)}
