@@ -1,5 +1,5 @@
 import React from 'react'
-import { redirect, useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { Button, Container, Dropdown, Nav, Navbar } from 'react-bootstrap'
 import { BASE_URL } from '../../constants/settiings'
 import NodeLogo from '../../assets/images/nodejs.ico'
@@ -10,10 +10,13 @@ import { useAcountStore } from '../../stores/auth'
 const Header: React.FC = () => {
   const { user, logout } = useAcountStore()
   const { pathname = '/' } = useLocation()
+  const navigate = useNavigate()
 
   const handleLogout = () => {
     logout()
-    redirect('/login')
+    if (pathname !== '/') {
+      navigate('/')
+    }
   }
 
   return (

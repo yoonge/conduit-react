@@ -30,7 +30,7 @@ export const [useAcountStore, getAcountStore] = createGlobalStore(() => {
   return { login, logout, update, user }
 })
 
-export const [useLoaddingStore, getLoaddingStore] = createGlobalStore(() => {
+export const [useLoadingStore, getLoadingStore] = createGlobalStore(() => {
   const [loading, setLoading] = useState(false)
   const [loadingCount, setLoadingCount] = useState(0)
 

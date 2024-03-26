@@ -10,12 +10,12 @@ import './index.less'
 
 import axios from '../../utils/axios'
 import { loadingDelay } from '../../utils/loading'
-import { useAcountStore, useLoaddingStore } from '../../stores/auth'
+import { useAcountStore, useLoadingStore } from '../../stores/auth'
 import { User } from '../../types/user'
 
 const Settings: React.FC = () => {
   const { update, user = {} as User } = useAcountStore()
-  const { loading = false, setLoading } = useLoaddingStore()
+  const { loading = false, setLoading } = useLoadingStore()
   const [avatar, setAvatar] = useState(user.avatar)
   const [email] = useState(user.email)
   const [username, setUsername] = useState(user.username)
@@ -298,7 +298,7 @@ const Settings: React.FC = () => {
         position="bottom-end"
         show={show}
         setShow={setShow}
-        title="Settings"
+        title="Success"
       />
     </>
   )

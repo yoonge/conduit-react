@@ -5,11 +5,11 @@ import { BASE_URL } from '../../../constants/settiings'
 import { useAcountStore } from '../../../stores/auth'
 import { Topic } from '../../../types/topic'
 
-interface BannerProps {
+interface TopicBannerProps {
   topic: Topic
 }
 
-const Banner: React.FC<BannerProps> = ({ topic }) => {
+const TopicBanner: React.FC<TopicBannerProps> = ({ topic }) => {
   const { user } = useAcountStore()
 
   return (
@@ -32,7 +32,7 @@ const Banner: React.FC<BannerProps> = ({ topic }) => {
               <Card.Body>
                 <Card.Title>{topic?.user?.nickname}</Card.Title>
                 <Card.Text>
-                  <small className="text-muted">{topic?.updateTime?.toLocaleString()}</small>
+                  <small className="text-muted">{topic?.createTime?.toLocaleString()}</small>
                 </Card.Text>
               </Card.Body>
             </div>
@@ -50,4 +50,4 @@ const Banner: React.FC<BannerProps> = ({ topic }) => {
   )
 }
 
-export default Banner
+export default TopicBanner
