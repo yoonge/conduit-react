@@ -66,7 +66,7 @@ const ListItem: React.FC<ListItemProps> = ({ topic }) => {
             <span className="favoriteCount">{topic.favorite}</span>
           </Button>
           <small className="updateTime text-muted" title={topic.updateTime.toLocaleString()}>
-            {topic.updateTime.toLocaleString()}
+            {topic.updateTimeStr}
           </small>
         </div>
       </div>
