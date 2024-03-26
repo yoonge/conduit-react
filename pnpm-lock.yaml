@@ -11,6 +11,9 @@ dependencies:
   bootstrap:
     specifier: ^5.3.3
     version: 5.3.3(@popperjs/core@2.11.8)
+  flatpickr:
+    specifier: ^4.6.13
+    version: 4.6.13
   hox:
     specifier: ^2.1.1
     version: 2.1.1(react@18.2.0)
@@ -1531,6 +1534,10 @@ packages:
       flatted: 3.2.7
       rimraf: 3.0.2
     dev: true
+
+  /flatpickr@4.6.13:
+    resolution: {integrity: sha512-97PMG/aywoYpB4IvbvUJi0RQi8vearvU0oov1WW3k0WZPBMrTQVqekSX5CjSG/M4Q3i6A/0FKXC7RyAoAUUSPw==}
+    dev: false
 
   /flatted@3.2.7:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
