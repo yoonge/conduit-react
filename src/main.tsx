@@ -5,6 +5,7 @@ import { HoxRoot } from 'hox'
 import Homepage from './pages/Homepage'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import TopicInitiate from './pages/TopicInitiate'
 import TopicDetail from './pages/TopicDetail'
 import Profile from './pages/Profile'
 import Settings from './pages/Settings'
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
   { path: '/', element: <Homepage /> },
   { path: '/login', element: <Login /> },
   { path: '/register', element: <Register /> },
+  { path: '/topic/initiate', element: <TopicInitiate /> },
   { path: '/topic-detail/:_id', element: <TopicDetail /> },
   { path: '/profile/:username', element: <Profile /> },
   { path: '/settings', element: <Settings /> },

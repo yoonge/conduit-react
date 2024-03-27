@@ -7,7 +7,7 @@ import TabsComponent from '../TabsComponent'
 import ListView from '../ListView'
 import './index.less'
 
-import { useTopicStore } from '../../stores/topic'
+import { useTopicListStore } from '../../stores/topic'
 import { User } from '../../types/user'
 
 interface ListPageProps {
@@ -33,7 +33,7 @@ const ListPage: React.FC<ListPageProps> = ({
 }) => {
   const { username = undefined } = useParams()
 
-  const { fetchTopicList, theUser = {} as User } = useTopicStore()
+  const { fetchTopicList, theUser = {} as User } = useTopicListStore()
   useEffect(() => {
     fetchTopicList(username).catch((err: AxiosError) => {
       console.log('err', err)

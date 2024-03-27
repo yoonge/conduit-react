@@ -5,11 +5,11 @@ import axios from '../utils/axios'
 import { Topic } from '../types/topic'
 import { User } from '../types/user'
 
-interface TopicStoreProps {
+interface TopicListStoreProps {
   activeKey: string
 }
 
-export const [useTopicStore, TopicStoreProvider] = createStore((props: TopicStoreProps) => {
+export const [useTopicListStore, TopicListStoreProvider] = createStore((props: TopicListStoreProps) => {
   const [topicList, setTopicList] = useState([] as Array<Topic>)
   const [theUser, setTheUser] = useState({} as User)
   const { activeKey = 'all' } = props;

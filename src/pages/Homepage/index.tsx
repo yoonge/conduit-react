@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import ListPage from '../../components/ListPage'
 
-import { TopicStoreProvider } from '../../stores/topic'
+import { TopicListStoreProvider } from '../../stores/topic'
 
 const Homepage = () => {
   const navigate = useNavigate()
@@ -36,7 +36,7 @@ const Homepage = () => {
   }
 
   return (
-    <TopicStoreProvider activeKey={activeKey}>
+    <TopicListStoreProvider activeKey={activeKey}>
       <ListPage
         activeKey={activeKey}
         defaultActiveKey="all"
@@ -45,7 +45,7 @@ const Homepage = () => {
         handleTabSelect={handleTabSelect}
         tabs={tabs}
       />
-    </TopicStoreProvider>
+    </TopicListStoreProvider>
   )
 }
 

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import ListItem from '../ListItem'
 import './index.less'
 
-import { useTopicStore } from '../../stores/topic'
+import { useTopicListStore } from '../../stores/topic'
 
 interface ListViewProps {
   activeKey: string
@@ -12,7 +12,7 @@ interface ListViewProps {
 
 const ListView: React.FC<ListViewProps> = ({ activeKey, handleTabSelect }) => {
   const navigate = useNavigate()
-  const { topicList } = useTopicStore()
+  const { topicList } = useTopicListStore()
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault()
