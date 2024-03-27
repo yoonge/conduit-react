@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import ListPage from '../../components/ListPage'
 import { BASE_URL } from '../../constants/settiings'
 
-import { TopicStoreProvider } from '../../stores/topic'
+import { TopicListStoreProvider } from '../../stores/topic'
 import { User } from '../../types/user'
 
 const Profile = () => {
@@ -51,7 +51,7 @@ const Profile = () => {
   }
 
   return (
-    <TopicStoreProvider activeKey={activeKey}>
+    <TopicListStoreProvider activeKey={activeKey}>
       <ListPage
         activeKey={activeKey}
         defaultActiveKey="topics"
@@ -60,7 +60,7 @@ const Profile = () => {
         handleTabSelect={handleTabSelect}
         tabs={tabs}
       />
-    </TopicStoreProvider>
+    </TopicListStoreProvider>
   )
 }
 

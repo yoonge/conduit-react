@@ -6,7 +6,7 @@ import { BASE_URL } from '../../constants/settiings'
 import Header from '../../components/Header'
 import Banner from '../../components/Banner'
 import ToastComp from '../../components/ToastComp'
-import './index.less'
+import '../../assets/stylesheets/form.less'
 
 import axios from '../../utils/axios'
 import { loadingDelay } from '../../utils/loading'
