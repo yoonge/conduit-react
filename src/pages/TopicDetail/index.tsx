@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Container, Form } from 'react-bootstrap'
+import { AxiosResponse } from 'axios'
 import Vditor from 'vditor'
 import Header from '../../components/Header'
 import TopicBanner from './TopicBanner'
@@ -10,7 +11,6 @@ import ToastComp from '../../components/ToastComp'
 import './index.less'
 
 import axios from '../../utils/axios'
-import { AxiosResponse } from 'axios'
 import { useAcountStore, useLoadingStore } from '../../stores/auth'
 import { loadingDelay } from '../../utils/loading'
 
@@ -31,7 +31,7 @@ const TopicDetail: React.FC = () => {
   const topicContentRef = useRef(null)
   useEffect(() => {
     axios
-      .get(`/topic-detail/${_id}`)
+      .get(`/topic/${_id}`)
       .then((res: AxiosResponse) => {
         const { data: { topic = {} } = {} } = res
         const { comments: allComments = [] } = topic
@@ -47,7 +47,7 @@ const TopicDetail: React.FC = () => {
         })
       })
       .catch(err => {
-        console.error('err', err)
+        console.error('Topic query error: ', err)
       })
   }, [_id])
 
@@ -56,8 +56,10 @@ const TopicDetail: React.FC = () => {
     axios
       .post('/topic/comment', comment)
       .then((res: AxiosResponse) => {
-        const { data: { updatedTopic: { comments = [] } = {} } = {} } = res
+        const { data: { updatedTopic = {} } = {} } = res
+        const { comments = [] } = updatedTopic
         setComments(comments)
+        setTopic(updatedTopic)
         loadingDelay(400).then(() => {
           setLoading(false)
           handleToastShow('Success', 'Comment successfully.')
