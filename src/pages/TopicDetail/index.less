@@ -11,7 +11,7 @@
     padding: 36px;
 
     .card {
-      max-width: 240px;
+      max-width: 336px;
       border: none;
       background-color: transparent;
 
@@ -24,7 +24,7 @@
 
         .card-title {
           color: #fff;
-          margin-bottom: 3px;
+          margin-block-end: 3px;
         }
 
         .card-text .text-muted {
@@ -52,26 +52,30 @@
   font-size: 16px;
   max-width: 1200px;
   line-height: 1.8rem;
-  border-top: 1px solid rgba(0, 0, 0, .176);
-  margin-top: -24px;
+  border-block-start: 1px solid rgba(0, 0, 0, .176);
+  margin-block-start: -24px;
   padding: 36px 48px 96px;
+
+  > form {
+    margin-block-end: 12px;
+  }
 
   .card {
     border-radius: 0;
 
     &+ .card {
-      margin-top: 12px;
+      margin-block-start: 12px;
     }
 
     pre {
       white-space: normal;
       word-break: break-all;
-      margin-bottom: 0;
+      margin-block-end: 0;
     }
 
     .card-footer {
-      padding-top: 5px;
-      padding-bottom: 5px;
+      padding-block-start: 5px;
+      padding-block-end: 5px;
 
       .btn-sm {
         height: 31px;
@@ -82,13 +86,13 @@
 
         img {
           border-radius: 3px;
-          margin-top: -4px;
-          margin-right: 8px;
+          margin-block-start: -4px;
+          margin-inline-end: 8px;
         }
 
         small {
           opacity: .75;
-          margin-left: 10px;
+          margin-inline-start: 10px;
         }
       }
     }
@@ -97,14 +101,14 @@
 
 @media (max-width: 767.98px) {
   .topicComment {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-inline-start: 16px;
+    padding-inline-end: 16px;
   }
 }
 
 @media (max-width: 575.98px) {
   .topicComment {
-    padding-left: 0;
-    padding-right: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
   }
 }
