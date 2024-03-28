@@ -17,7 +17,7 @@ const CommentForm: React.FC<CommentFormProps> = ({ handleCommentSubmit, handleTo
   const { user } = useAcountStore()
   const [comment, setComment] = useState('')
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     e.stopPropagation()
     if (!comment.trim()) {
