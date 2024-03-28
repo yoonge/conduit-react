@@ -31,7 +31,7 @@ const Login: React.FC = () => {
     }
   }
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     e.stopPropagation()
     if (!e.currentTarget.checkValidity()) {
@@ -70,9 +70,9 @@ const Login: React.FC = () => {
               autoComplete="off"
               isInvalid={!email.match(/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/)}
             />
-            <Form.Control.Feedback tooltip type="invalid">
+            {/* <Form.Control.Feedback tooltip type="invalid">
               Please enter a valid email address.
-            </Form.Control.Feedback>
+            </Form.Control.Feedback> */}
           </FloatingLabel>
           <FloatingLabel controlId="password" label="Password">
             <Form.Control
@@ -84,9 +84,9 @@ const Login: React.FC = () => {
               autoComplete="off"
               isInvalid={!password}
             />
-            <Form.Control.Feedback tooltip type="invalid">
+            {/* <Form.Control.Feedback tooltip type="invalid">
               Please enter a valid password.
-            </Form.Control.Feedback>
+            </Form.Control.Feedback> */}
           </FloatingLabel>
 
           {/* <div className="checkbox mb-3">

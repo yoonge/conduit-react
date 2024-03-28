@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { Button, Form, Spinner } from 'react-bootstrap'
 import flatpickr from 'flatpickr'
 import AVATAR from '../../constants/avatar'
-import { BASE_URL } from '../../constants/settiings'
 import Header from '../../components/Header'
 import Banner from '../../components/Banner'
 import ToastComp from '../../components/ToastComp'
@@ -10,6 +9,7 @@ import '../../assets/stylesheets/form.less'
 
 import axios from '../../utils/axios'
 import { loadingDelay } from '../../utils/loading'
+import { BASE_URL } from '../../constants/settiings'
 import { useAcountStore, useLoadingStore } from '../../stores/auth'
 import { User } from '../../types/user'
 
@@ -74,7 +74,7 @@ const Settings: React.FC = () => {
     }
   }
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     e.stopPropagation()
     if (!e.currentTarget.checkValidity()) {
@@ -97,7 +97,7 @@ const Settings: React.FC = () => {
       }
       setLoading(true)
       const { data = {} } = await axios.post('/settings/update', formData)
-      const { msg, user: updatedUser = {} as User } = data
+      const { msg = '', user: updatedUser = {} as User } = data
       update(updatedUser)
       loadingDelay(400).then(() => {
         setLoading(false)
