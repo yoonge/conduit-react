@@ -265,7 +265,7 @@ const Settings = () => {
             />
           </div>
           <div className="mb-3">
-            <Form.Label htmlFor="password">Password Confirm</Form.Label>
+            <Form.Label htmlFor="passwordConfirm">Password Confirm</Form.Label>
             <Form.Control
               autoComplete="off"
               id="passwordConfirm"
@@ -293,6 +293,7 @@ const Settings = () => {
           </div>
         </Form>
       </section>
+
       <ToastComp
         content={toastMsg}
         position="bottom-end"

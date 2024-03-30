@@ -8,26 +8,21 @@ body {
   margin-block-start: 20vmin !important;
 
   .form-floating {
-    &:focus-within {
+    &:focus-within,
+    &:has(input.is-invalid) {
       z-index: 2;
     }
 
-    .invalid-tooltip {
-      min-width: 180px;
-      top: -1px;
-      left: 100.25%;
-    }
+    // .invalid-tooltip {
+    //   min-width: 180px;
+    //   top: -1px;
+    //   left: 100.25%;
+    // }
   }
 
-  input[type='email'] {
+  input[type="email"],
+  input[type="text"],
+  input[type="password"] {
     margin-block-end: -1px;
-  }
-
-  input[type='text'] {
-    margin-block-end: -1px;
-  }
-
-  input[type='password'] {
-    margin-block-end: 10px;
   }
 }
