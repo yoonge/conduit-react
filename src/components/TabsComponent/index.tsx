@@ -1,4 +1,3 @@
-import React from 'react'
 import { Button, Tab, Tabs } from 'react-bootstrap'
 
 import { useAcountStore } from '../../stores/auth'

@@ -1,4 +1,3 @@
-import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Button, Container, Dropdown, Nav, Navbar } from 'react-bootstrap'
 import { BASE_URL } from '../../constants/settiings'
@@ -7,7 +6,7 @@ import './index.less'
 
 import { useAcountStore } from '../../stores/auth'
 
-const Header: React.FC = () => {
+const Header = () => {
   const { user, logout } = useAcountStore()
   const { pathname = '/' } = useLocation()
   const navigate = useNavigate()
