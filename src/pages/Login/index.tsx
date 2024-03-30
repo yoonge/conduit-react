@@ -1,21 +1,27 @@
 import { useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { Alert, Button, FloatingLabel, Form } from 'react-bootstrap'
+import { Button, FloatingLabel, Form, Spinner } from 'react-bootstrap'
 import Header from '../../components/Header'
-import Logo from '../../assets/images/nodejs.ico'
+import ToastComp from '../../components/ToastComp'
 import '../../assets/stylesheets/sign.less'
 
+import Logo from '../../assets/images/nodejs.ico'
+
 import axios from '../../utils/axios'
-import { useAcountStore } from '../../stores/auth'
+import { useAcountStore, useLoadingStore } from '../../stores/auth'
+import { loadingDelay } from '../../utils/loading'
+
 
 const Login = () => {
-  const navigete = useNavigate()
+  const navigate = useNavigate()
+  const { loading = false, setLoading } = useLoadingStore()
   const [searchParams] = useSearchParams()
   const defaultEmail = searchParams.get('email') || ''
   const redirect = searchParams.get('redirect') || '/'
   const [email, setEmail] = useState(defaultEmail)
   const [password, setPassword] = useState('')
-  const [alertMsg, setAlertMsg] = useState('')
+  const [toastMsg, setToastMsg] = useState('')
+  const [showToast, setShowToast] = useState(false)
   const { login } = useAcountStore()
 
   const handleChange = (type: string, val: string) => {
@@ -39,15 +45,24 @@ const Login = () => {
     }
 
     try {
+      setLoading(true)
       const { data = {} } = await axios.post('/login', {
         email,
         password
       })
       const { token, user } = data
       login(user, token)
-      navigete(redirect)
+      loadingDelay(400).then(() => {
+        setLoading(false)
+        navigate(redirect)
+      })
     } catch (err: any) {
-      setAlertMsg(err.msg)
+      console.error('err', err)
+      loadingDelay(300).then(() => {
+        setLoading(false)
+        setToastMsg(err.msg)
+        setShowToast(true)
+      })
     }
   }
 
@@ -57,18 +72,15 @@ const Login = () => {
       <main className="form-signin mx-auto p-3">
         <Form className="text-center" noValidate onSubmit={handleSubmit}>
           <img className="mb-5" src={Logo} alt="Logo" title="Node.js" height="57" />
-          <Alert variant="danger" show={alertMsg !== ''}>
-            {alertMsg}
-          </Alert>
           <FloatingLabel controlId="email" label="Email address">
             <Form.Control
-              type="email"
-              placeholder="name@example.com"
-              value={email}
-              required
-              onChange={e => handleChange('email', e.target.value)}
               autoComplete="off"
               isInvalid={!email.match(/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/)}
+              onChange={e => handleChange('email', e.target.value)}
+              placeholder="name@example.com"
+              required
+              type="email"
+              value={email}
             />
             {/* <Form.Control.Feedback tooltip type="invalid">
               Please enter a valid email address.
@@ -76,23 +88,30 @@ const Login = () => {
           </FloatingLabel>
           <FloatingLabel controlId="password" label="Password">
             <Form.Control
-              type="password"
-              placeholder="Password"
-              value={password}
-              required
-              onChange={e => handleChange('password', e.target.value)}
               autoComplete="off"
+              className="mb-3"
               isInvalid={!password}
+              onChange={e => handleChange('password', e.target.value)}
+              placeholder="Password"
+              required
+              type="password"
+              value={password}
             />
             {/* <Form.Control.Feedback tooltip type="invalid">
               Please enter a valid password.
             </Form.Control.Feedback> */}
           </FloatingLabel>
 
-          {/* <div className="checkbox mb-3">
-            <label> <input type="checkbox" value="remember-me" /> Remember me </label>
-          </div> */}
-          <Button className="w-100" variant="dark" size="lg" type="submit">
+          <Button className="w-100" disabled={loading} variant="dark" size="lg" type="submit">
+            <Spinner
+              animation="border"
+              aria-hidden="true"
+              as="span"
+              className="me-3"
+              hidden={!loading}
+              role="status"
+              size="sm"
+            />
             Sign In
           </Button>
           <p className="text-start mt-4 mb-3">
@@ -100,6 +119,16 @@ const Login = () => {
           </p>
         </Form>
       </main>
+
+      <ToastComp
+        bg="danger"
+        content={toastMsg}
+        delay={5000}
+        position="bottom-end"
+        show={showToast}
+        setShow={setShowToast}
+        title="Login Error"
+      />
     </>
   )
 }
