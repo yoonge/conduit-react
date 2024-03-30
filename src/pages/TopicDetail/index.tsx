@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Container, Form } from 'react-bootstrap'
 import { AxiosResponse } from 'axios'
@@ -17,7 +17,7 @@ import { loadingDelay } from '../../utils/loading'
 import { Topic } from '../../types/topic'
 import { Comment } from '../../types/comment'
 
-const TopicDetail: React.FC = () => {
+const TopicDetail = () => {
   const { user } = useAcountStore()
   const { loading = false, setLoading } = useLoadingStore()
   const [topic, setTopic] = useState({} as Topic)

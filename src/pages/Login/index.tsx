@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { Alert, Button, FloatingLabel, Form } from 'react-bootstrap'
 import Header from '../../components/Header'
@@ -8,7 +8,7 @@ import '../../assets/stylesheets/sign.less'
 import axios from '../../utils/axios'
 import { useAcountStore } from '../../stores/auth'
 
-const Login: React.FC = () => {
+const Login = () => {
   const navigete = useNavigate()
   const [searchParams] = useSearchParams()
   const defaultEmail = searchParams.get('email') || ''

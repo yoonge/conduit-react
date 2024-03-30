@@ -1,11 +1,10 @@
-import React from 'react'
 import { Button, FloatingLabel, Form } from 'react-bootstrap'
 import Header from '../../components/Header'
 import Logo from '../../assets/images/nodejs.ico'
 
 import '../../assets/stylesheets/sign.less'
 
-const Register: React.FC = () => {
+const Register = () => {
   return (
     <>
       <Header />

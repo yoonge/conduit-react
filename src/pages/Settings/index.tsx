@@ -13,7 +13,7 @@ import { BASE_URL } from '../../constants/settiings'
 import { useAcountStore, useLoadingStore } from '../../stores/auth'
 import { User } from '../../types/user'
 
-const Settings: React.FC = () => {
+const Settings = () => {
   const { update, user = {} as User } = useAcountStore()
   const { loading = false, setLoading } = useLoadingStore()
   const [avatar, setAvatar] = useState(user.avatar)
