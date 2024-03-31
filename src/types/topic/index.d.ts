@@ -6,8 +6,8 @@ declare type Topic = {
   favorite?: number
   status?: number
   title: string
-  createTime: Date
-  updateTime: Date
+  createTime: string
+  updateTime: string
   updateTimeStr: string
   user: Types.ObjectId
 }

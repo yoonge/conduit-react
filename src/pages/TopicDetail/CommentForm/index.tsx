@@ -7,17 +7,22 @@ import { BASE_URL } from '../../../constants/settiings'
 import { Comment } from '../../../types/comment'
 
 interface CommentFormProps {
-  handleCommentSubmit: (comment: Comment) => void
+  handleCommentSubmit: (comment: Comment) => Promise<void>
   handleToastShow: (title: string, msg: string, bg?: Bg) => void
   loading: boolean
   topicId: string | undefined
 }
 
-const CommentForm: React.FC<CommentFormProps> = ({ handleCommentSubmit, handleToastShow, loading, topicId }) => {
+const CommentForm: React.FC<CommentFormProps> = ({
+  handleCommentSubmit,
+  handleToastShow,
+  loading,
+  topicId
+}) => {
   const { user } = useAcountStore()
   const [comment, setComment] = useState('')
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     e.stopPropagation()
     if (!comment.trim()) {
@@ -28,9 +33,9 @@ const CommentForm: React.FC<CommentFormProps> = ({ handleCommentSubmit, handleTo
     const newComment = {
       content: comment,
       topic: topicId,
-      user: user?._id,
+      user: user?._id
     }
-    handleCommentSubmit(newComment as Comment)
+    await handleCommentSubmit(newComment as Comment)
     setComment('')
   }
 

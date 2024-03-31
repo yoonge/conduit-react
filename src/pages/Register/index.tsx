@@ -7,8 +7,8 @@ import '../../assets/stylesheets/sign.less'
 
 import Logo from '../../assets/images/nodejs.ico'
 
-import axios from '../../utils/axios'
 import { useAcountStore, useLoadingStore } from '../../stores/auth'
+import axios from '../../utils/axios'
 import { loadingDelay } from '../../utils/loading'
 
 const Register = () => {
@@ -56,17 +56,15 @@ const Register = () => {
       })
       const { token, user } = data
       login(user, token)
-      loadingDelay(400).then(() => {
-        setLoading(false)
-        navigate('/')
-      })
+      await loadingDelay(400)
+      setLoading(false)
+      navigate('/')
     } catch (err: any) {
       console.error('err', err)
-      loadingDelay(300).then(() => {
-        setLoading(false)
-        setToastMsg(err.msg)
-        setShowToast(true)
-      })
+      await loadingDelay(300)
+      setLoading(false)
+      setToastMsg(err.msg)
+      setShowToast(true)
     }
   }
 

@@ -34,10 +34,9 @@ const TopicInitiate = () => {
       }
       setLoading(true)
       await axios.post('/topic/initiate', formData)
-      loadingDelay(400).then(() => {
-        setLoading(false)
-        navigate('/')
-      })
+      await loadingDelay(400)
+      setLoading(false)
+      navigate('/')
     } catch (err) {
       setLoading(false)
       console.error('Topic initiate error: ', err)

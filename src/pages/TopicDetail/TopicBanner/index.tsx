@@ -51,9 +51,9 @@ const TopicBanner: React.FC<TopicBannerProps> = ({ topic = {} as Topic }) => {
               <Card.Body>
                 <Card.Title>{topic?.user?.nickname}</Card.Title>
                 <Card.Text>
-                  <small className="text-muted">Created at: {topic?.createTime?.toLocaleString()}</small>
+                  <small className="text-muted">Created at: {topic?.createTime}</small>
                   <br />
-                  <small className="text-muted">Updated at: {topic?.updateTime?.toLocaleString()}</small>
+                  <small className="text-muted">Updated at: {topic?.updateTime}</small>
                 </Card.Text>
               </Card.Body>
             </div>

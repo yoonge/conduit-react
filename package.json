@@ -1,6 +1,6 @@
 {
   "author": "Yoonge <7884008@qq.com>",
-  "description": "Realworld: The mother of all demo apps — Exemplary front-end Medium.com clone (called Conduit) built with Axios + Bootstrap + ESLint + Hox + Less + Prettier + React + React-Bootstrap + React-Router-DOM + TypeScript + Vditor + Vite.",
+  "description": "Realworld: The mother of all demo apps — Exemplary front-end Medium.com clone (called Conduit) built with Axios + Hox + React + React-Bootstrap + React-Router-DOM + TypeScript + Vditor.",
   "keywords": [
     "Axios",
     "Bootstrap",

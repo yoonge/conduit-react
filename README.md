@@ -5,7 +5,7 @@
 
 ## 💡 Introduction
 
-Realworld: "The mother of all demo apps" — Exemplary front-end Medium.com clone (called [Conduit](https://github.com/yoonge/conduit-react.git)) built with Axios + Bootstrap + ESLint + Hox + Less + Prettier + React + React-Bootstrap + React-Router-DOM + TypeScript + Vditor + Vite.
+Realworld: "The mother of all demo apps" — Exemplary front-end Medium.com clone (called [Conduit](https://github.com/yoonge/conduit-react)) built with Axios + Hox + React + React-Bootstrap + React-Router-DOM + TypeScript + Vditor.
 
 
 ## 🔰 Getting Started
@@ -27,7 +27,11 @@ $ pnpm dev
 <!-- ## ⚡ Features -->
 
 
-<!-- ## 📌 TODO -->
+<!-- ## 📌 TODO
+
+- favor.
+- pagination.
+- tags. -->
 
 
 ## 📄 License

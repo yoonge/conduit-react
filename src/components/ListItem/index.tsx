@@ -1,17 +1,53 @@
+import { useSearchParams } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
 import { BASE_URL } from '../../constants/settiings'
 import { User } from '../../types/user'
 import { Topic } from '../../types/topic'
 
-import { useAcountStore } from '../../stores/auth'
+import { useAcountStore, useLoadingStore } from '../../stores/auth'
+import { useTopicListStore } from '../../stores/topic'
+import axios from '../../utils/axios'
+import { loadingDelay } from '../../utils/loading'
 
 interface ListItemProps {
   topic: Topic
 }
 
 const ListItem: React.FC<ListItemProps> = ({ topic }) => {
-  const { user = {} as User } = useAcountStore()
+  const [searchParams] = useSearchParams()
+  const tab = searchParams.get('tab') || 'all'
+  const { update, user = {} as User } = useAcountStore()
+  const { loading = false, setLoading } = useLoadingStore()
+  const { removeTopicFromList, updateTopicList } = useTopicListStore()
+
+  const handleFavor = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault()
+    e.stopPropagation()
+
+    if (!user?.username) {
+      return
+    }
+
+    setLoading(true)
+    try {
+      const { data: { updatedTopic, updatedUser } = {} } = await axios.post('/favor', {
+        topicId: topic._id,
+        userId: user._id
+      })
+      update(updatedUser)
+      if (tab === 'favorites' || tab === 'my-favorites') {
+        removeTopicFromList(updatedTopic)
+      } else {
+        updateTopicList(updatedTopic)
+      }
+      await loadingDelay(400 )
+      setLoading(false)
+    } catch (err) {
+      setLoading(false)
+      console.error('Favor error: ', err)
+    }
+  }
 
   return (
     <div className="d-flex list-group-item list-group-item-action gap-3">
@@ -39,13 +75,15 @@ const ListItem: React.FC<ListItemProps> = ({ topic }) => {
         </a>
         <div className="favorite d-flex flex-column justify-content-between align-items-end text-end">
           <Button
-            variant="outline-success"
-            size="sm"
             className={
               user?.favorite?.includes(topic._id.toString())
-                ? 'btn-favorite active'
-                : 'btn-favorite'
+              ? 'btn-favorite active'
+              : 'btn-favorite'
             }
+            disabled={loading}
+            onClick={handleFavor}
+            size="sm"
+            variant="outline-success"
           >
             {/* <input type="hidden" name="currentUserId" value={user?._id?.toString()} />
             <input type="hidden" name="topicId" value={topic?._id.toString()} /> */}
@@ -64,7 +102,7 @@ const ListItem: React.FC<ListItemProps> = ({ topic }) => {
             </svg>
             <span className="favoriteCount">{topic.favorite}</span>
           </Button>
-          <small className="updateTime text-muted" title={topic.updateTime.toLocaleString()}>
+          <small className="updateTime text-muted" title={topic.updateTime}>
             {topic.updateTimeStr}
           </small>
         </div>

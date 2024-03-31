@@ -26,7 +26,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment }) => {
             height="24"
           />
           {comment?.user?.nickname}
-          <small>{comment?.createTime?.toLocaleString()}</small>
+          <small>{comment?.createTime}</small>
         </div>
       </Card.Footer>
     </Card>

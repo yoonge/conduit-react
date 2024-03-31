@@ -37,10 +37,9 @@ const TopicUpdate = () => {
       }
       setLoading(true)
       await axios.post('/topic/update', formData)
-      loadingDelay(400).then(() => {
-        setLoading(false)
-        navigate(`/topic/${topic?._id}`)
-      })
+      await loadingDelay(400)
+      setLoading(false)
+      navigate(`/topic/${topic?._id}`)
     } catch (err) {
       setLoading(false)
       console.error('Topic update error: ', err)
