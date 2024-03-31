@@ -52,17 +52,15 @@ const Login = () => {
       })
       const { token, user } = data
       login(user, token)
-      loadingDelay(400).then(() => {
-        setLoading(false)
-        navigate(redirect)
-      })
+      await loadingDelay(400)
+      setLoading(false)
+      navigate(redirect)
     } catch (err: any) {
       console.error('err', err)
-      loadingDelay(300).then(() => {
-        setLoading(false)
-        setToastMsg(err.msg)
-        setShowToast(true)
-      })
+      await loadingDelay(300)
+      setLoading(false)
+      setToastMsg(err.msg)
+      setShowToast(true)
     }
   }
 

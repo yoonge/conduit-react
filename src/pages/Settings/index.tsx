@@ -99,11 +99,10 @@ const Settings = () => {
       const { data = {} } = await axios.post('/settings/update', formData)
       const { msg = '', user: updatedUser = {} as User } = data
       update(updatedUser)
-      loadingDelay(400).then(() => {
-        setLoading(false)
-        setToastMsg(msg)
-        setShow(true)
-      })
+      await loadingDelay(400)
+      setLoading(false)
+      setToastMsg(msg)
+      setShow(true)
     } catch (err: any) {
       setLoading(false)
       console.error('Settings update error: ', err)

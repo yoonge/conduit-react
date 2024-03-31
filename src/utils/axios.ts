@@ -16,12 +16,12 @@ instance.interceptors.request.use(req => {
 instance.interceptors.response.use(res => {
   return res
 }, err => {
-  if (err.response.status === 401) {
+  if (err?.response?.status === 401) {
     localStorage.removeItem('user')
     localStorage.removeItem('token')
     window.location.href = '/'
   }
-  return Promise.reject(err.response.data)
+  return Promise.reject(err?.response?.data)
 })
 
 export default instance

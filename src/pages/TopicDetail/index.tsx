@@ -51,23 +51,34 @@ const TopicDetail = () => {
       })
   }, [_id])
 
-  const handleCommentSubmit = (comment: Comment) => {
+  const handleCommentSubmit = async (comment: Comment) => {
     setLoading(true)
-    axios
-      .post('/topic/comment', comment)
-      .then((res: AxiosResponse) => {
-        const { data: { updatedTopic = {} } = {} } = res
-        const { comments = [] } = updatedTopic
-        setComments(comments)
-        setTopic(updatedTopic)
-        loadingDelay(400).then(() => {
-          setLoading(false)
-          handleToastShow('Success', 'Comment successfully.')
-        })
-      })
-      .catch(err => {
-        console.error('err', err)
-      })
+    try {
+      const { data: { updatedTopic = {} } = {} } = await axios.post('/topic/comment', comment)
+      setComments(comments)
+      setTopic(updatedTopic)
+      await loadingDelay(400)
+      setLoading(false)
+      handleToastShow('Success', 'Comment successfully.')
+    } catch (err) {
+      setLoading(false)
+      console.error('Comment error: ', err)
+    }
+    // axios
+    //   .post('/topic/comment', comment)
+    //   .then((res: AxiosResponse) => {
+    //     const { data: { updatedTopic = {} } = {} } = res
+    //     const { comments = [] } = updatedTopic
+    //     setComments(comments)
+    //     setTopic(updatedTopic)
+    //     await loadingDelay(400)
+    //     setLoading(false)
+    //     handleToastShow('Success', 'Comment successfully.')
+    //   })
+    //   .catch(err => {
+    //     setLoading(false)
+    //     console.error('err', err)
+    //   })
   }
 
   const handleToastShow = (title: string, msg: string, bg?: Bg) => {
