@@ -12,10 +12,11 @@ interface TopicListStoreProps {
 export const [useTopicListStore, TopicListStoreProvider] = createStore(
   (props: TopicListStoreProps) => {
     const [topicList, setTopicList] = useState([] as Array<Topic>)
+    const [total, setTotal] = useState(0)
     const [theUser, setTheUser] = useState({} as User)
     const { activeKey = 'all' } = props
 
-    const fetchTopicList = async (username: string | undefined) => {
+    const fetchTopicList = async (username: string | undefined, page: string = '1') => {
       try {
         let api = '/'
         if (username) {
@@ -32,11 +33,15 @@ export const [useTopicListStore, TopicListStoreProvider] = createStore(
               break
           }
         }
+        if (page !== '1') {
+          api += `?page=${page}`
+        }
         const { data = {} } = await axios.get(api)
         // console.log('fetchTopicList data: ', data)
-        const { formatTopics = [], theUser = {} } = data
+        const { formatTopics = [], theUser = {}, total = 0 } = data
         setTopicList(formatTopics)
         setTheUser(theUser)
+        setTotal(total)
       } catch (err) {
         console.error('fetchTopicList error: ', err)
       }
@@ -56,8 +61,9 @@ export const [useTopicListStore, TopicListStoreProvider] = createStore(
         topicList.splice(index, 1)
       }
       setTopicList([...topicList])
+      setTotal(total - 1)
     }
 
-    return { fetchTopicList, removeTopicFromList, theUser, topicList, updateTopicList }
+    return { fetchTopicList, removeTopicFromList, theUser, topicList, total, updateTopicList }
   }
 )
