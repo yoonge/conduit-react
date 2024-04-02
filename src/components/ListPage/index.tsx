@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import { AxiosError } from 'axios'
 import Header from '../Header'
 import Banner from '../Banner'
 import TabsComponent from '../TabsComponent'
 import ListView from '../ListView'
+import PaginationComp from '../PaginationComp'
 import './index.less'
 
 import { useTopicListStore } from '../../stores/topic'
@@ -32,13 +33,15 @@ const ListPage: React.FC<ListPageProps> = ({
   tabs
 }) => {
   const { username = undefined } = useParams()
+  const [searchParams] = useSearchParams()
+  const page = searchParams.get('page') || '1'
 
   const { fetchTopicList, theUser = {} as User } = useTopicListStore()
   useEffect(() => {
-    fetchTopicList(username).catch((err: AxiosError) => {
+    fetchTopicList(username, page).catch((err: AxiosError) => {
       console.log('err', err)
     })
-  }, [activeKey])
+  }, [activeKey, page])
 
   return (
     <>
@@ -52,6 +55,7 @@ const ListPage: React.FC<ListPageProps> = ({
           tabs={tabs}
         />
         <ListView activeKey={activeKey} handleTabSelect={handleTabSelect} />
+        <PaginationComp />
       </main>
     </>
   )
