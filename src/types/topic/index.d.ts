@@ -4,6 +4,7 @@ declare type Topic = {
   comments?: [Types.ObjectId]
   content: string
   favorite?: number
+  tags?: [string]
   status?: number
   title: string
   createTime: string

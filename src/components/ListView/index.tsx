@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import { Badge } from 'react-bootstrap'
 import ListItem from '../ListItem'
 import './index.less'
 
@@ -37,6 +38,11 @@ const ListView: React.FC<ListViewProps> = ({ activeKey, handleTabSelect }) => {
             {['all', 'my-topics', 'topics'].includes(activeKey) && (
               <>
                 Nothing yet... You can initiate a new topic <a href="/topic/initiate">HERE</a>.
+              </>
+            )}
+            {(activeKey.indexOf('tag') === 0) && (
+              <>
+                Nothing yet... You can initiate a new topic with <Badge bg="success">{activeKey.substring(3)}</Badge> <a href="/topic/initiate">HERE</a>.
               </>
             )}
           </div>

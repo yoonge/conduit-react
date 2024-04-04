@@ -1,3 +1,5 @@
+declare module 'bootstrap5-tags'
+
 declare type Bg =
   | 'primary'
   | 'secondary'

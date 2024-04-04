@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Button, Form, Spinner } from 'react-bootstrap'
+import Tags from 'bootstrap5-tags'
 import Vditor from 'vditor'
 
 import axios from '../../utils/axios'
@@ -38,6 +39,7 @@ const TopicForm: React.FC<TopicFormProps> = ({
   const contentRef = useRef('')
   const vditorRef = useRef(null)
   useEffect(() => {
+    Tags.init()
     handleVditorInit()
   }, [])
 
@@ -172,6 +174,11 @@ const TopicForm: React.FC<TopicFormProps> = ({
     const instance = new Vditor(vditorRef?.current!, vditorOptions)
   }
 
+  // @ts-ignore
+  window['handleCanAdd'] = (val: string, data: any, inst: any) => {
+    console.log(val, data, inst)
+  }
+
   return (
     <Form noValidate onSubmit={handleSubmit}>
       <div className="mb-3">
@@ -194,6 +201,30 @@ const TopicForm: React.FC<TopicFormProps> = ({
           value={title}
         />
         <Form.Control.Feedback type="invalid">Topic title is required.</Form.Control.Feedback>
+      </div>
+      <div className="mb-3">
+        <Form.Label htmlFor="tags-input" className="form-label">
+          Tags
+        </Form.Label>
+        <select
+          className="form-select"
+          data-add-on-blur
+          data-allow-clear
+          data-allow-new
+          data-badge-style="success"
+          data-clear-end
+          data-max={8}
+          data-on-can-ddd="handleCanAdd"
+          data-placeholder="Add your tags here, at most 8"
+          data-regex="^[\w-]{1,20}$"
+          id="tags-input"
+          multiple
+          name="tags[]"
+        />
+        <Form.Control.Feedback type="invalid">
+          The tag is invalid, only letters, numbers, spaces between letters, _ and - are allowed,
+          up to 20.
+        </Form.Control.Feedback>
       </div>
       <div className="mb-3">
         <Form.Label htmlFor="content" className="form-label">

@@ -9,6 +9,7 @@ import TopicInitiate from './pages/TopicInitiate'
 import TopicDetail from './pages/TopicDetail'
 import TopicUpdate from './pages/TopicUpdate'
 import Profile from './pages/Profile'
+import Tag from './pages/Tag'
 import Settings from './pages/Settings'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
   { path: '/topic/update/:_id', element: <TopicUpdate /> },
   { path: '/profile/:username', element: <Profile /> },
   { path: '/settings', element: <Settings /> },
+  { path: '/tag/:tag', element: <Tag /> },
 ])
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
