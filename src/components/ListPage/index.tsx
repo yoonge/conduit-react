@@ -35,7 +35,6 @@ const ListPage: React.FC<ListPageProps> = ({
   const { username = undefined } = useParams()
   const [searchParams] = useSearchParams()
   const page = searchParams.get('page') || '1'
-
   const { fetchTopicList, theUser = {} as User } = useTopicListStore()
   useEffect(() => {
     fetchTopicList(username, page).catch((err: AxiosError) => {

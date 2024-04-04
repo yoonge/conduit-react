@@ -4,65 +4,78 @@
 .newTopic {
   max-width: 1080px;
   margin: 0 auto;
+
+  h2, h4 {
+    text-align: center;
+  }
+
+  .avatar {
+    border-radius: 6px;
+  }
+
+  .form-label {
+    font-size: 1.275rem;  // ≈ 18px, base 14px
+  }
 }
 
-.settings h2,
-.settings h4,
-.newTopic h2,
-.newTopic h4 {
-  text-align: center;
+.settings {
+
+  .form-select > option {
+    font-size: 18px !important;
+  }
+
+  .form-radio-control {
+    border-color: transparent;
+    padding-inline-start: 0;
+
+    .form-check-label {
+      font-size: 1.125rem;  // ≈ 16px, base 14px
+      cursor: pointer;
+    }
+
+    .form-check-input {
+      margin-block-start: 4px;
+    }
+  }
 }
 
-.settings .avatar,
-.newTopic .avatar {
-  border-radius: 6px;
-}
+.newTopic {
 
-.settings .form-label,
-.newTopic .form-label {
-  font-size: 1.275rem;  // ≈ 18px, base 14px
-}
+  .vditor {
 
-.settings .form-select > option {
-  font-size: 18px !important;
-}
+    .vditor-reset {
+      // min-height: 442px;
+      border: 1px solid transparent;
 
-.settings .form-radio-control {
-  border-color: transparent;
-  padding-inline-start: 0;
-}
+      &:focus {
+        border-color: #5cb85c;
+        box-shadow: 0 0 0 0.25rem rgba(61, 139, 61, 0.25);
+      }
+    }
 
-.settings .form-radio-control .form-check-label {
-  font-size: 1.125rem;  // ≈ 16px, base 14px
-  cursor: pointer;
-}
+    &.is-invalid .vditor-reset {
+      border-color: var(--bs-form-invalid-border-color);
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right calc(.375em + .1875rem) center;
+      background-size: calc(.75em + .375rem) calc(.75em + .375rem);
+      padding-inline-end: calc(1.5em + .75rem);
 
+      &:focus {
+        border-color: var(--bs-form-invalid-border-color);
+        box-shadow: 0 0 0 .25rem rgba(var(--bs-danger-rgb), .25);
+      }
+    }
+  }
 
-.settings .form-radio-control .form-check-input {
-  margin-block-start: 4px;
-}
+  .form-control {
+    cursor: text;
 
-.newTopic .vditor .vditor-reset {
-  // min-height: 442px;
-  border: 1px solid transparent;
-}
-
-.newTopic .vditor .vditor-reset:focus {
-  border-color: #5cb85c;
-  box-shadow: 0 0 0 0.25rem rgba(61, 139, 61, 0.25);
-}
-
-.newTopic .vditor.is-invalid .vditor-reset {
-  border-color: var(--bs-form-invalid-border-color);
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right calc(.375em + .1875rem) center;
-  background-size: calc(.75em + .375rem) calc(.75em + .375rem);
-  padding-inline-end: calc(1.5em + .75rem);
-
-  &:focus {
-    border-color: var(--bs-form-invalid-border-color);
-    box-shadow: 0 0 0 .25rem rgba(var(--bs-danger-rgb), .25);
+    .tags-badge.bg-success {
+      color: #fff;
+      border-radius: 0;
+      background-color: #5cb85c !important;
+    }
   }
 }
 

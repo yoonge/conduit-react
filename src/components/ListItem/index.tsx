@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
+import { Badge, Button } from 'react-bootstrap'
 
 import { BASE_URL } from '../../constants/settiings'
 import { User } from '../../types/user'
@@ -41,7 +41,7 @@ const ListItem: React.FC<ListItemProps> = ({ topic }) => {
       } else {
         updateTopicList(updatedTopic)
       }
-      await loadingDelay(400 )
+      await loadingDelay(400)
       setLoading(false)
     } catch (err) {
       setLoading(false)
@@ -52,41 +52,57 @@ const ListItem: React.FC<ListItemProps> = ({ topic }) => {
   return (
     <div className="d-flex list-group-item list-group-item-action gap-3">
       <a
+        className="avatar flex-shrink-0"
         href={user?.username ? `/profile/${topic.user.username}` : undefined}
         title={topic.user.nickname || topic.user.username}
-        className="avatar flex-shrink-0"
       >
         <img
-          src={`${BASE_URL}${topic.user.avatar}`}
           alt={topic.user.username}
-          width="32"
           height="32"
+          src={`${BASE_URL}${topic.user.avatar}`}
+          width="32"
         />
       </a>
       <div className="d-flex w-100 justify-content-between">
-        <a href={`/topic/${topic._id}`} className="topicSummary">
-          <h5 className="mb-1">{topic.title}</h5>
-          <p className="mb-4 text-muted">{topic?.content}</p>
-          <small className="text-muted">
-            {(topic.comment as number) > 1
-              ? `${topic.comment} comments.`
-              : `${topic.comment} comment.`}
-          </small>
-        </a>
+        <div>
+          <a href={`/topic/${topic._id}`} className="d-block mb-4">
+            <h5 className="mb-1">{topic.title}</h5>
+            <p className="text-muted">{topic?.content}</p>
+          </a>
+          <div className="d-flex justify-content-between">
+            <small className="text-muted">
+              {(topic.comment as number) > 1
+                ? `${topic.comment} comments.`
+                : `${topic.comment} comment.`}
+            </small>
+            <div className="text-end">
+              {/* {topic.tags?.map((tag, i) => ( */}
+              {['tag1', 'tag2', 'tag3'].map((tag, i) => (
+                <Badge
+                  as="a"
+                  bg="success"
+                  className={i === 0 ? '' : 'ms-2'}
+                  href={`/tag/${tag}`}
+                  key={tag}
+                >
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          </div>
+        </div>
         <div className="favorite d-flex flex-column justify-content-between align-items-end text-end">
           <Button
             className={
               user?.favorite?.includes(topic._id.toString())
-              ? 'btn-favorite active'
-              : 'btn-favorite'
+                ? 'btn-favorite active'
+                : 'btn-favorite'
             }
             disabled={loading}
             onClick={handleFavor}
             size="sm"
             variant="outline-success"
           >
-            {/* <input type="hidden" name="currentUserId" value={user?._id?.toString()} />
-            <input type="hidden" name="topicId" value={topic?._id.toString()} /> */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="14"
