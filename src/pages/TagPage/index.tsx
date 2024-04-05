@@ -5,7 +5,7 @@ import ListPage from '../../components/ListPage'
 import { TopicListStoreProvider } from '../../stores/topic'
 import { User } from '../../types/user'
 
-const Tag = () => {
+const TagPage = () => {
   const { tag = '' } = useParams()
   const [activeKey] = useState(`tag${tag}`)
 
@@ -41,4 +41,4 @@ const Tag = () => {
   )
 }
 
-export default Tag
+export default TagPage

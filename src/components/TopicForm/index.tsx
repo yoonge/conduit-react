@@ -15,8 +15,10 @@ interface TopicFormProps {
   loading: boolean
   setContent: React.Dispatch<React.SetStateAction<string>>
   setModalShow?: React.Dispatch<React.SetStateAction<boolean>>
+  setTags: React.Dispatch<React.SetStateAction<string[]>>
   setTitle: React.Dispatch<React.SetStateAction<string>>
   setTopic?: React.Dispatch<React.SetStateAction<Topic>>
+  tags: string[]
   title: string
 }
 
@@ -27,8 +29,10 @@ const TopicForm: React.FC<TopicFormProps> = ({
   loading,
   setContent,
   setModalShow,
+  setTags,
   setTitle,
   setTopic,
+  tags,
   title
 }) => {
   const navigate = useNavigate()
@@ -39,8 +43,35 @@ const TopicForm: React.FC<TopicFormProps> = ({
   const contentRef = useRef('')
   const vditorRef = useRef(null)
   useEffect(() => {
-    Tags.init()
-    handleVditorInit()
+    let vditorInst: Vditor | undefined
+    Tags.init('select.tags-select', {
+      // items: tags,
+      selected: tags,
+      showAllSuggestions: true,
+      onCanAdd: (val: string, _data: any, inst: any) => {
+        // console.log('onCanAdd values: ', inst.getSelectedValues())
+        setTags([...inst.getSelectedValues(), val])
+      },
+      onClearItem: (_val: string, inst: any) => {
+        // console.log('onClearItem values: ', inst.getSelectedValues())
+        setTags([...inst.getSelectedValues()])
+      }
+      // onCreateItem: (_opt: string, inst: any) => {
+      //   console.log('onCreateItem values: ', inst.getSelectedValues())
+      // },
+      // onSelectItem: (_item: string, inst: any) => {
+      //   console.log('onSelectItem values: ', inst.getSelectedValues())
+      // }
+    })
+
+    handleVditorInit(vditorInst)
+
+    return () => {
+      Tags.getInstance(document.querySelector('#tags-select'))?.dispose()
+      vditorInst?.destroy()
+      contentRef.current = ''
+      vditorRef.current = null
+    }
   }, [])
 
   const checkContentValidity = (val: string) => {
@@ -57,11 +88,16 @@ const TopicForm: React.FC<TopicFormProps> = ({
     if (_id) {
       if (topicStr) {
         const topicJSON = JSON.parse(topicStr) as Topic
-        if (_id && _id === topicJSON?._id) {
+        if (_id === topicJSON?._id) {
+          const { content = '', tags = [], title = '' } = topicJSON
           setTopic && setTopic(topicJSON)
-          setTitle(topicJSON?.title)
-          setContent(topicJSON?.content)
-          contentRef.current = topicJSON?.content
+          setTags(tags)
+          setTitle(title)
+          setContent(content)
+          contentRef.current = content
+          tags.map((tag: string) =>
+            Tags.getInstance(document.querySelector('#tags-select'))?.addItem(tag)
+          )
           return
         } else {
           setTopic && setTopic({} as Topic)
@@ -72,10 +108,15 @@ const TopicForm: React.FC<TopicFormProps> = ({
       try {
         const { data: { topic: topicData = {} as Topic } = {} } = await axios.get(`/topic/${_id}`)
         if (user?._id === topicData?.user?._id) {
+          const { content = '', tags = [], title = '' } = topicData
           setTopic && setTopic(topicData)
-          setTitle(topicData?.title)
-          setContent(topicData?.content)
-          contentRef.current = topicData?.content
+          setTags(tags)
+          setTitle(title)
+          setContent(content)
+          contentRef.current = content
+          tags.map((tag: string) =>
+            Tags.getInstance(document.querySelector('#tags-select'))?.addItem(tag)
+          )
           localStorage.setItem('topic', JSON.stringify(topicData))
         } else {
           setModalShow && setModalShow(true)
@@ -89,14 +130,14 @@ const TopicForm: React.FC<TopicFormProps> = ({
     }
   }
 
-  const handleVditorInit = () => {
+  const handleVditorInit = (instance: Vditor | undefined) => {
     const vditorOptions: IOptions = {
       after:
         action === 'update'
           ? () => {
               handleTopicQuery()
                 .then(() => {
-                  instance.setValue(contentRef.current, true)
+                  instance?.setValue(contentRef.current, true)
                   checkContentValidity(contentRef.current)
                 })
                 .catch(err => {
@@ -111,7 +152,7 @@ const TopicForm: React.FC<TopicFormProps> = ({
         checkContentValidity(val)
       },
       cache: { enable: false },
-      // cdn: 'https://cdn.jsdelivr.net/npm/vditor@3.10.2',
+      cdn: 'https://cdn.jsdelivr.net/npm/vditor@3.10.2',
       input(val) {
         setContent(val)
         checkContentValidity(val)
@@ -171,12 +212,7 @@ const TopicForm: React.FC<TopicFormProps> = ({
       value: action === 'update' ? content : ''
     }
 
-    const instance = new Vditor(vditorRef?.current!, vditorOptions)
-  }
-
-  // @ts-ignore
-  window['handleCanAdd'] = (val: string, data: any, inst: any) => {
-    console.log(val, data, inst)
+    instance = new Vditor(vditorRef?.current!, vditorOptions)
   }
 
   return (
@@ -203,26 +239,30 @@ const TopicForm: React.FC<TopicFormProps> = ({
         <Form.Control.Feedback type="invalid">Topic title is required.</Form.Control.Feedback>
       </div>
       <div className="mb-3">
-        <Form.Label htmlFor="tags-input" className="form-label">
+        <Form.Label htmlFor="tags-select" className="form-label">
           Tags
         </Form.Label>
         <select
-          className="form-select"
+          className="form-select tags-select"
           data-add-on-blur
           data-allow-clear
           data-allow-new
           data-badge-style="success"
           data-clear-end
           data-max={8}
-          data-on-can-ddd="handleCanAdd"
-          data-placeholder="Add your tags here, at most 8"
           data-regex="^[\w-]{1,20}$"
-          id="tags-input"
+          data-show-drop-icon
+          data-update-on-select="true"
+          id="tags-select"
           multiple
           name="tags[]"
-        />
+        >
+          <option disabled hidden value="">
+            Add or select at most 8 tags here, each tag length is up to 20
+          </option>
+        </select>
         <Form.Control.Feedback type="invalid">
-          The tag is invalid, only letters, numbers, spaces between letters, _ and - are allowed,
+          Only letters, numbers, spaces between letters, _ and - are allowed, single tag length is
           up to 20.
         </Form.Control.Feedback>
       </div>

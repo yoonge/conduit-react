@@ -76,8 +76,7 @@ const ListItem: React.FC<ListItemProps> = ({ topic }) => {
                 : `${topic.comment} comment.`}
             </small>
             <div className="text-end">
-              {/* {topic.tags?.map((tag, i) => ( */}
-              {['tag1', 'tag2', 'tag3'].map((tag, i) => (
+              {topic.tags?.map((tag, i) => (
                 <Badge
                   as="a"
                   bg="success"

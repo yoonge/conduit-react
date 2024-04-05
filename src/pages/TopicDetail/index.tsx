@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { Container, Form } from 'react-bootstrap'
-import { AxiosResponse } from 'axios'
+import { useNavigate, useParams } from 'react-router-dom'
+import { Badge, Container, Form } from 'react-bootstrap'
 import Vditor from 'vditor'
 import Header from '../../components/Header'
 import TopicBanner from './TopicBanner'
@@ -18,6 +17,7 @@ import { Topic } from '../../types/topic'
 import { Comment } from '../../types/comment'
 
 const TopicDetail = () => {
+  const navigate = useNavigate()
   const { user } = useAcountStore()
   const { loading = false, setLoading } = useLoadingStore()
   const [topic, setTopic] = useState({} as Topic)
@@ -30,26 +30,55 @@ const TopicDetail = () => {
 
   const topicContentRef = useRef(null)
   useEffect(() => {
-    axios
-      .get(`/topic/${_id}`)
-      .then((res: AxiosResponse) => {
-        const { data: { topic = {} } = {} } = res
-        const { comments: allComments = [] } = topic
-        setComments(allComments)
-        setTopic(topic)
-
-        Vditor.preview(topicContentRef?.current!, topic?.content, {
-          lang: 'en_US',
-          mode: 'light',
-          theme: {
-            current: 'light'
-          }
-        })
-      })
-      .catch(err => {
-        console.error('Topic query error: ', err)
-      })
+    handleTopicQuery()
   }, [_id])
+
+  const handleTopicQuery = async () => {
+    const topicStr = localStorage.getItem('topic')
+    if (_id) {
+      if (topicStr) {
+        const topicJSON = JSON.parse(topicStr) as Topic
+        if (_id === topicJSON?._id) {
+          const { comments = [] } = topicJSON
+          setComments(comments)
+          setTopic(topicJSON)
+
+          handleTopicPreview(topicContentRef.current!, topicJSON?.content)
+          return
+        } else {
+          setComments([] as Array<Comment>)
+          setTopic({} as Topic)
+          localStorage.removeItem('topic')
+        }
+      }
+
+      try {
+        const { data: { topic: topicData = {} as Topic } = {} } = await axios.get(`/topic/${_id}`)
+        const { comments = [] } = topicData
+        setComments(comments)
+        setTopic(topicData)
+
+        handleTopicPreview(topicContentRef.current!, topicData?.content)
+        localStorage.setItem('topic', JSON.stringify(topicData))
+      } catch (err) {
+        console.error('Topic query error: ', err)
+      }
+    } else {
+      navigate(-1)
+    }
+  }
+
+  const handleTopicPreview = (topicContentElem: HTMLDivElement, content: string) => {
+    Vditor.preview(topicContentElem, content, {
+      cdn: 'https://cdn.jsdelivr.net/npm/vditor@3.10.2',
+      lang: 'en_US',
+      mode: 'light',
+      theme: {
+        current: 'light',
+        path: 'https://cdn.jsdelivr.net/npm/vditor@3.10.2/dist/css/content-theme'
+      }
+    })
+  }
 
   const handleCommentSubmit = async (comment: Comment) => {
     setLoading(true)
@@ -57,6 +86,7 @@ const TopicDetail = () => {
       const { data: { updatedTopic = {} } = {} } = await axios.post('/topic/comment', comment)
       setComments(comments)
       setTopic(updatedTopic)
+      localStorage.setItem('topic', JSON.stringify(updatedTopic))
       await loadingDelay(400)
       setLoading(false)
       handleToastShow('Success', 'Comment successfully.')
@@ -64,21 +94,6 @@ const TopicDetail = () => {
       setLoading(false)
       console.error('Comment error: ', err)
     }
-    // axios
-    //   .post('/topic/comment', comment)
-    //   .then((res: AxiosResponse) => {
-    //     const { data: { updatedTopic = {} } = {} } = res
-    //     const { comments = [] } = updatedTopic
-    //     setComments(comments)
-    //     setTopic(updatedTopic)
-    //     await loadingDelay(400)
-    //     setLoading(false)
-    //     handleToastShow('Success', 'Comment successfully.')
-    //   })
-    //   .catch(err => {
-    //     setLoading(false)
-    //     console.error('err', err)
-    //   })
   }
 
   const handleToastShow = (title: string, msg: string, bg?: Bg) => {
@@ -95,6 +110,24 @@ const TopicDetail = () => {
 
       <Container id="topicContent" className="topicContent mx-auto" ref={topicContentRef}>
         <Form.Control as="textarea" className="d-none" defaultValue={topic?.content} />
+      </Container>
+
+      <Container className="tagsSection">
+        {topic?.tags && topic?.tags?.length > 0 && (
+          <>
+            Tags: {topic?.tags?.map((tag, i) => (
+              <Badge
+                as="a"
+                bg="success"
+                className={i === 0 ? '' : 'ms-2'}
+                href={`/tag/${tag}`}
+                key={tag}
+              >
+                {tag}
+              </Badge>
+            ))}
+          </>
+        )}
       </Container>
 
       {user?.username || comments.length ? (
