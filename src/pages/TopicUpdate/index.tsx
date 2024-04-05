@@ -19,6 +19,7 @@ const TopicUpdate = () => {
   const { loading = false, setLoading } = useLoadingStore()
   const [topic, setTopic] = useState({} as Topic)
   const [title, setTitle] = useState('')
+  const [tags, setTags] = useState<string[]>([])
   const [content, setContent] = useState('')
   const [modalShow, setModalShow] = useState(false)
 
@@ -32,11 +33,14 @@ const TopicUpdate = () => {
     try {
       const formData = {
         content,
+        tags,
         title,
         topicId: topic?._id,
       }
       setLoading(true)
-      await axios.post('/topic/update', formData)
+      const { data: { updatedTopic = {} } = {} } = await axios.post('/topic/update', formData)
+      setTopic(updatedTopic)
+      localStorage.setItem('topic', JSON.stringify(updatedTopic))
       await loadingDelay(400)
       setLoading(false)
       navigate(`/topic/${topic?._id}`)
@@ -75,8 +79,10 @@ const TopicUpdate = () => {
           loading={loading}
           setContent={setContent}
           setModalShow={setModalShow}
+          setTags={setTags}
           setTitle={setTitle}
           setTopic={setTopic}
+          tags={tags}
           title={title}
         />
       </Container>

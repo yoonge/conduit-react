@@ -37,6 +37,15 @@ const Settings = () => {
     { value: 0, label: 'Secret' }
   ]
 
+  const flatpickrRef = useRef(null)
+  useEffect(() => {
+    flatpickr(flatpickrRef.current!, {
+      onChange: (_, dateStr: string) => {
+        handleInputChange('birthday', dateStr)
+      }
+    })
+  }, [])
+
   const handleInputChange = (field: string, value: string) => {
     switch (field) {
       case 'avatar':
@@ -108,15 +117,6 @@ const Settings = () => {
       console.error('Settings update error: ', err)
     }
   }
-
-  const flatpickrRef = useRef(null)
-  useEffect(() => {
-    flatpickr(flatpickrRef.current!, {
-      onChange: (_, dateStr: string) => {
-        handleInputChange('birthday', dateStr)
-      }
-    })
-  }, [])
 
   return (
     <>

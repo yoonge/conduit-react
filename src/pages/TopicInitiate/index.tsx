@@ -17,6 +17,7 @@ const TopicInitiate = () => {
   const { user = {} as User } = useAcountStore()
   const { loading = false, setLoading } = useLoadingStore()
   const [title, setTitle] = useState('')
+  const [tags, setTags] = useState<string[]>([])
   const [content, setContent] = useState('')
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -29,14 +30,16 @@ const TopicInitiate = () => {
     try {
       const formData = {
         content,
+        tags,
         title,
         user: user._id
       }
       setLoading(true)
-      await axios.post('/topic/initiate', formData)
+      const { data: { newTopic = {} } = {} } =await axios.post('/topic/initiate', formData)
+      localStorage.setItem('topic', JSON.stringify(newTopic))
       await loadingDelay(400)
       setLoading(false)
-      navigate('/')
+      navigate(`/topic/${newTopic?._id}`)
     } catch (err) {
       setLoading(false)
       console.error('Topic initiate error: ', err)
@@ -66,7 +69,9 @@ const TopicInitiate = () => {
           handleSubmit={handleSubmit}
           loading={loading}
           setContent={setContent}
+          setTags={setTags}
           setTitle={setTitle}
+          tags={tags}
           title={title}
         />
       </Container>
