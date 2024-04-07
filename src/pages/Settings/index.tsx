@@ -121,24 +121,18 @@ const Settings = () => {
   return (
     <>
       <Header />
-      <Banner
-        headline={
-          <h2>
-            <img
-              alt={user?.username}
-              src={`${BASE_URL}${avatar}`}
-              title={user?.nickname || user?.username}
-              width={100}
-            />
-          </h2>
-        }
-        secondary={
-          <>
-            <h4 className="mt-3">{user?.nickname || user?.username}</h4>
-            <p className="text-secondary">{user?.bio}</p>
-          </>
-        }
-      />
+      <Banner>
+        <h2>
+          <img
+            alt={user?.username}
+            src={`${BASE_URL}${avatar}`}
+            title={user?.nickname || user?.username}
+            width={100}
+          />
+        </h2>
+        <h4 className="mt-3">{user?.nickname || user?.username}</h4>
+        <p className="text-secondary">{user?.bio}</p>
+      </Banner>
       <section className="settings">
         <Form
           className="mt-5"

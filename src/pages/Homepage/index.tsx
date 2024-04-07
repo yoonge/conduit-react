@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
+import Banner from '../../components/Banner'
 import ListPage from '../../components/ListPage'
 
 import { TopicListStoreProvider } from '../../stores/topic'
@@ -39,9 +40,13 @@ const Homepage = () => {
     <TopicListStoreProvider activeKey={activeKey}>
       <ListPage
         activeKey={activeKey}
+        BannerComp={
+          <Banner>
+            <h1>Conduit</h1>
+            <p>A place to share your knowledge.</p>
+          </Banner>
+        }
         defaultActiveKey="all"
-        generateHeadline={(_) => <h1>Conduit</h1>}
-        generateSecondary={(_) => <p>A place to share your knowledge.</p>}
         handleTabSelect={handleTabSelect}
         tabs={tabs}
       />

@@ -49,19 +49,17 @@ const TopicInitiate = () => {
   return (
     <>
       <Header />
-      <Banner
-        headline={<h2>Topic Initiate</h2>}
-        secondary={
-          <img
-            alt={user.username}
-            className="avatar mt-4"
-            src={`${BASE_URL}${user.avatar}`}
-            title={user.nickname}
-            width="48"
-            height="48"
-          />
-        }
-      />
+      <Banner>
+        <h2>Topic Initiate</h2>
+        <img
+          alt={user.username}
+          className="avatar mt-4"
+          src={`${BASE_URL}${user.avatar}`}
+          title={user.nickname}
+          width="48"
+          height="48"
+        />
+      </Banner>
       <Container className="newTopic py-5">
         <TopicForm
           action='initiate'
