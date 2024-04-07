@@ -64,7 +64,7 @@ const ListItem: React.FC<ListItemProps> = ({ topic }) => {
         />
       </a>
       <div className="d-flex w-100 justify-content-between">
-        <div>
+        <div className="w-100">
           <a href={`/topic/${topic._id}`} className="d-block mb-4">
             <h5 className="mb-1">{topic.title}</h5>
             <p className="text-muted">{topic?.content}</p>

@@ -1,37 +1,54 @@
-import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Container } from 'react-bootstrap'
+import Header from '../../components/Header'
 import Banner from '../../components/Banner'
-import ListPage from '../../components/ListPage'
+import WordCloud from 'wordcloud'
+import './index.less'
 
-import { TopicListStoreProvider } from '../../stores/topic'
+import axios from '../../utils/axios'
 
-const TagPage = () => {
-  const { tag = '' } = useParams()
-  const [activeKey] = useState(`tag${tag}`)
+const Tags = () => {
+  const navigate = useNavigate()
+  const wordcloudRef = useRef(null)
 
-  const tabs = [{ key: `tag${tag}`, label: tag, visibility: 1 }]
+  useEffect(() => {
+    axios
+      .get('/tags')
+      .then(res => {
+        // console.log('WordCloud isSupported: ', WordCloud.isSupported)
+        const { tagsArr = [] } = res.data
+        const opts: WordCloud.Options = {
+          drawOutOfBound: false,
+          fontWeight: 600,
+          gridSize: 42,
+          list: tagsArr,
+          shrinkToFit: true,
+          weightFactor: 32,
+          click: item => {
+            navigate(item[2])
+          }
+        }
+        WordCloud(wordcloudRef.current!, opts)
+      })
+      .catch(err => console.error(err))
 
-  const handleTabSelect = (key: string) => {
-    if (key === `tag${tag}`) {
-      return
+    return () => {
+      WordCloud.stop()
     }
-  }
+  }, [])
 
   return (
-    <TopicListStoreProvider activeKey={activeKey}>
-      <ListPage
-        activeKey={activeKey}
-        BannerComp={
-          <Banner>
-            <h2>{tag}</h2>
-          </Banner>
-        }
-        defaultActiveKey={`tag${tag}`}
-        handleTabSelect={handleTabSelect}
-        tabs={tabs}
-      />
-    </TopicListStoreProvider>
+    <>
+      <Header />
+      <Banner>
+        <h2>Tags Cloud</h2>
+      </Banner>
+      <Container className="pt-4">
+        <div className="wordcloud" ref={wordcloudRef} />
+      </Container>
+    </>
   )
 }
 
-export default TagPage
+export default Tags

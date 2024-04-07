@@ -9,6 +9,7 @@ import TopicInitiate from './pages/TopicInitiate'
 import TopicDetail from './pages/TopicDetail'
 import TopicUpdate from './pages/TopicUpdate'
 import Profile from './pages/Profile'
+import Tags from './pages/Tags'
 import TagPage from './pages/TagPage'
 import Settings from './pages/Settings'
 
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
   { path: '/topic/update/:_id', element: <TopicUpdate /> },
   { path: '/profile/:username', element: <Profile /> },
   { path: '/settings', element: <Settings /> },
+  { path: '/tags', element: <Tags /> },
   { path: '/tags/:tag', element: <TagPage /> },
 ])
 

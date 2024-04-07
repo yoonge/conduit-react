@@ -1,0 +1,29 @@
+.wordcloud {
+  min-height: 480px;
+
+  > span {
+    box-sizing: content-box;
+    display: inline-block;
+    padding: 6px;
+    cursor: pointer;
+
+    &:hover {
+      animation: scale 1s ease;
+    }
+  }
+}
+
+@keyframes scale {
+  0% {
+    scale: 1;
+  }
+  20% {
+    scale: .8;
+  }
+  80% {
+    scale: 1.2;
+  }
+  100% {
+    scale: 1;
+  }
+}
