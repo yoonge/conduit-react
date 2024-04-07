@@ -120,7 +120,7 @@ const TopicDetail = () => {
                 as="a"
                 bg="success"
                 className={i === 0 ? '' : 'ms-2'}
-                href={`/tag/${tag}`}
+                href={`/tags/${tag}`}
                 key={tag}
               >
                 {tag}

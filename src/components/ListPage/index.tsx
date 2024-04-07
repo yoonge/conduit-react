@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom'
 import { AxiosError } from 'axios'
 import Header from '../Header'
-import Banner from '../Banner'
 import TabsComponent from '../TabsComponent'
 import ListView from '../ListView'
 import PaginationComp from '../PaginationComp'
@@ -13,9 +12,8 @@ import { User } from '../../types/user'
 
 interface ListPageProps {
   activeKey: string
+  BannerComp: JSX.Element | ((user: User) => JSX.Element)
   defaultActiveKey: string
-  generateHeadline: (user: User) => JSX.Element
-  generateSecondary: (user: User) => JSX.Element
   handleTabSelect: (key: string) => void
   tabs: {
     key: string
@@ -26,9 +24,8 @@ interface ListPageProps {
 
 const ListPage: React.FC<ListPageProps> = ({
   activeKey,
+  BannerComp,
   defaultActiveKey,
-  generateHeadline,
-  generateSecondary,
   handleTabSelect,
   tabs
 }) => {
@@ -45,7 +42,7 @@ const ListPage: React.FC<ListPageProps> = ({
   return (
     <>
       <Header />
-      <Banner headline={generateHeadline(theUser)} secondary={generateSecondary(theUser)} />
+      {BannerComp instanceof Function ? BannerComp(theUser) : BannerComp}
       <main className="main mx-auto">
         <TabsComponent
           activeKey={activeKey}

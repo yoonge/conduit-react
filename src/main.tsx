@@ -24,7 +24,7 @@ const router = createBrowserRouter([
   { path: '/topic/update/:_id', element: <TopicUpdate /> },
   { path: '/profile/:username', element: <Profile /> },
   { path: '/settings', element: <Settings /> },
-  { path: '/tag/:tag', element: <TagPage /> },
+  { path: '/tags/:tag', element: <TagPage /> },
 ])
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

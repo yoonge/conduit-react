@@ -31,7 +31,7 @@ export const [useTopicListStore, TopicListStoreProvider] = createStore(
               break
             default:
               if (activeKey.indexOf('tag') === 0) {
-                api += `tag/${activeKey.substring(3)}`
+                api += `tags/${activeKey.substring(3)}`
               }
               break
           }

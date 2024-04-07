@@ -34,6 +34,7 @@ const TopicUpdate = () => {
       const formData = {
         content,
         tags,
+        tagsRemoved: topic?.tags?.filter(tag => !tags.includes(tag)) || [],
         title,
         topicId: topic?._id,
       }
@@ -58,19 +59,17 @@ const TopicUpdate = () => {
   return (
     <>
       <Header />
-      <Banner
-        headline={<h2>Topic Update</h2>}
-        secondary={
-          <img
-            alt={user.username}
-            className="avatar mt-4"
-            src={`${BASE_URL}${user.avatar}`}
-            title={user.nickname}
-            width="48"
-            height="48"
-          />
-        }
-      />
+      <Banner>
+        <h2>Topic Update</h2>
+        <img
+          alt={user.username}
+          className="avatar mt-4"
+          src={`${BASE_URL}${user.avatar}`}
+          title={user.nickname}
+          width="48"
+          height="48"
+        />
+      </Banner>
       <Container className="newTopic py-5">
         <TopicForm
           action='update'
