@@ -9,7 +9,7 @@ const TagPage = () => {
   const { tag = '' } = useParams()
   const [activeKey] = useState(`tag${tag}`)
 
-  const tabs = [{ key: `tag${tag}`, label: tag, visibility: 1 }]
+  const tabs = [{ key: `tag${tag}`, label: tag, visibility: 0 }]
 
   const handleTabSelect = (key: string) => {
     if (key === `tag${tag}`) {
@@ -23,7 +23,7 @@ const TagPage = () => {
         activeKey={activeKey}
         BannerComp={
           <Banner>
-            <h2>{tag}</h2>
+            <h2>Tag: {tag}</h2>
           </Banner>
         }
         defaultActiveKey={`tag${tag}`}

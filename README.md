@@ -29,8 +29,7 @@ $ pnpm dev
 
 <!-- ## 📌 TODO
 
-- pagination.
-- tags. -->
+- ListItem refactor. -->
 
 
 ## 📄 License

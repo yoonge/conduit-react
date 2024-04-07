@@ -20,7 +20,7 @@ const Header = () => {
 
   return (
     <Navbar expand="lg" className="header">
-       {/* bg="dark" data-bs-theme="dark" */}
+      {/* bg="dark" data-bs-theme="dark" */}
       <Container>
         <Navbar.Brand href="/">
           <img
@@ -36,9 +36,24 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/" className={pathname === "/" ? "me-1 active" : "me-1"}>Homepage</Nav.Link>
+            <Nav.Link href="/" className={pathname === '/' ? 'active me-1' : 'me-1'}>
+              Homepage
+            </Nav.Link>
+            <Nav.Link href="/tags" className={pathname === '/tags' ? 'active me-1' : 'me-1'}>
+              Tags
+            </Nav.Link>
             {user.username ? (
-              <Nav.Link href="/settings" className={pathname === "/settings" ? "active" : ""}>Settings</Nav.Link>
+              <>
+                <Nav.Link
+                  href={`/profile/${user.username}`}
+                  className={pathname.indexOf('/profile/') === 0 ? 'active me-1' : 'me-1'}
+                >
+                  Profile
+                </Nav.Link>
+                <Nav.Link href="/settings" className={pathname === '/settings' ? 'active' : ''}>
+                  Settings
+                </Nav.Link>
+              </>
             ) : null}
           </Nav>
           <Nav className="d-flex login">
@@ -56,18 +71,24 @@ const Header = () => {
                   {user.nickname || user.username}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item href="/settings">Settings</Dropdown.Item>
                   <Dropdown.Item href={`/profile/${user.username}`}>Profile</Dropdown.Item>
+                  <Dropdown.Item href="/settings">Settings</Dropdown.Item>
                   <Dropdown.Divider />
                   <Dropdown.Item href="/topic/initiate">New Topic</Dropdown.Item>
                   <Dropdown.Divider />
-                  <Dropdown.Item as="button" className="logout" onClick={handleLogout}>Logout</Dropdown.Item>
+                  <Dropdown.Item as="button" className="logout" onClick={handleLogout}>
+                    Logout
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             ) : (
               <>
-                <Button href="/login" variant="outline-dark">Sign in</Button>
-                <Button href="/register" variant="dark">Sign up</Button>
+                <Button href="/login" variant="outline-dark">
+                  Sign in
+                </Button>
+                <Button href="/register" variant="dark">
+                  Sign up
+                </Button>
               </>
             )}
           </Nav>
