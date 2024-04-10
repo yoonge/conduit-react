@@ -100,7 +100,7 @@ const ListItem: React.FC<ListItemProps> = ({ topic }) => {
             </Button>
           </div>
         </div>
-        <div className="d-flex w-100 justify-content-between pt-2">
+        <div className="d-flex w-100 justify-content-between gap-3 pt-2">
           <small className="d-block flex-shrink-0 text-muted">
             {(topic.comment as number) > 1
               ? `${topic.comment} comments.`
@@ -119,7 +119,7 @@ const ListItem: React.FC<ListItemProps> = ({ topic }) => {
               </Badge>
             ))}
           </div>
-          <small className="updateTime d-block flex-shrink-0 text-muted text-end ms-3" title={topic.updateTime}>
+          <small className="updateTime d-block flex-shrink-0 text-muted text-end" title={topic.updateTime}>
             {topic.updateTimeStr}
           </small>
         </div>
